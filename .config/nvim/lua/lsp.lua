@@ -3,11 +3,12 @@ local set = vim.keymap.set
   set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
   set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   set("n", "<C-m>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  -- set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+  set("n", "gt", "<cmd><CR>")
   set("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   set("n", "ma", "<cmd>lua vim.lsp.buf.code_action()<CR>")
   set("n", "gr", "<cmd>Telescope lsp_references<CR>")
-  set('n', 'gi', "<cmd>lua vim.lsp.buf.implementation()<CR>")
+  set('n', 'gi', "<cmd>Telescope lsp_implementations<CR>")
   set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
   set("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
   set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
@@ -37,7 +38,6 @@ require("mason").setup()
 require("mason-lspconfig").setup()
 require("mason-lspconfig").setup_handlers {
   function (server_name) -- default handler (optional)
-      print(server_name)
     require("lspconfig")[server_name].setup {
       on_attach = on_attach, --keyバインドなどの設定を登録
       capabilities = capabilities, --cmpを連携

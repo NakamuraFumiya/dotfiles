@@ -59,9 +59,105 @@ require("packer").startup(function(use)
   }
   -- Buffer Line
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  -- Terminal
+  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end}
+  -- Comment
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+          require('Comment').setup()
+      end
+  }
+  -- QuickFix
+  use {
+    "folke/trouble.nvim",
+    requires = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  -- Neotest
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-go"
+    },
+    config = function()
+      local ok, neotest = pcall(require, 'neotest')
+      local ok_go, neotest_go = pcall(require, 'neotest-go')
+
+      if ok and ok_go then 
+
+        -- unit
+        vim.keymap.set('n', '<Leader>tn', function() 
+          neotest.run.run()
+          neotest.output_panel.open()
+          neotest.summary.open()
+        end, { noremap = true, silent = true })
+
+        -- file
+        vim.keymap.set('n', '<Leader>tf', function()
+          neotest.run.run(vim.fn.expand("%"))
+          neotest.output_panel.open()
+          neotest.summary.open()
+        end, { noremap = true, silent = true })
+
+        -- package
+        vim.keymap.set('n', '<Leader>tp', function()
+          neotest.run.run(vim.fn.expand("%:h"))
+          neotest.output_panel.open()
+          neotest.summary.open()
+        end, { noremap = true, silent = true })
+
+        -- close
+        vim.keymap.set('n', '<Leader>tc', function()
+          neotest.output_panel.close()
+          neotest.summary.close()
+        end, { noremap = true, silent = true })
+
+        -- quit test
+        vim.keymap.set('n', '<Leader>tq', function()
+          neotest.run.stop()
+        end, { noremap = true, silent = true })
+
+        -- get neotest namespace (api call creates or returns namespace)
+        local neotest_ns = vim.api.nvim_create_namespace("neotest")
+        vim.diagnostic.config({
+          virtual_text = {
+            format = function(diagnostic)
+              local message =
+              diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
+              return message
+            end,
+          },
+        }, neotest_ns)
+        neotest.setup({
+          -- your neotest config here
+          adapters = {
+            neotest_go({
+              args = { "-count=1" }
+            }),
+          },
+        })
+      end
+    end
+  }
+  -- GoTest
+  use {
+    'buoto/gotests-vim',
+    config = function()
+      vim.g.gotests_template_dir = vim.fs.normalize('~/.config/gotests')
+    end
+  }
   -- Golang
-  use 'mattn/vim-goimports'
-  -- Golang(go.nvim)
-  -- use 'ray-x/go.nvim'
-  -- use 'ray-x/guihua.lua' -- recommended if need floating window support
+  -- use 'mattn/vim-goimports'
 end)

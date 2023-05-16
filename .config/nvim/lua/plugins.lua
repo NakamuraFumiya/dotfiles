@@ -159,5 +159,5 @@ require("packer").startup(function(use)
     end
   }
   -- Golang
-  -- use 'mattn/vim-goimports'
+  use 'mattn/vim-goimports'
 end)

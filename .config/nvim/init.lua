@@ -5,4 +5,5 @@ require "comp"
 require "finder"
 require "color"
 require "tree"
+require "lightbulb"
 

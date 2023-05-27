@@ -1,9 +1,9 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
---vim.o.guifont = 'JetBrainsMono Nerd Font'
-vim.o.guifont = 'HackGen35'
-vim.o.guicursor = 'n-v-c:block,i:ver1'
+-- vim.o.guifont = 'JetBrainsMono Nerd Font'
+-- vim.o.guifont = 'HackGen35 Console NFJ'
+-- vim.o.guicursor = 'n-v-c:block,i:ver1'
 -- マルチコードに対応
 vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
@@ -79,3 +79,8 @@ vim.opt.listchars = {
 	eol = '↴',
 	nbsp = '%'
 }
+
+vim.o.cmdheight = 0
+
+vim.o.undofile = true
+vim.o.undodir = vim.fn.expand('~/.vim/undodir')

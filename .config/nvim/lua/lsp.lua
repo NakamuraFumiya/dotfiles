@@ -1,10 +1,8 @@
 -- https://zenn.dev/fukakusa_kadoma/articles/99e8f3ab855a56
 local set = vim.keymap.set
   set("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
-  -- set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
   set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   set("n", "<C-m>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  -- set("n", "gt", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
   set("n", "gt", "<cmd><CR>")
   set("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   set("n", "ma", "<cmd>lua vim.lsp.buf.code_action()<CR>")
@@ -16,14 +14,6 @@ local set = vim.keymap.set
   set('n', 'to', "<cmd>Telescope oldfiles<CR>")
 
 local on_attach = function(client, bufnr)
-
-  -- LSPが持つフォーマット機能を無効化する
-  -- →例えばtsserverはデフォルトでフォーマット機能を提供しますが、利用したくない場合はコメントアウトを解除してください
-  --client.server_capabilities.documentFormattingProvider = false
-  
-  -- 下記ではデフォルトのキーバインドを設定しています
-  -- ほかのLSPプラグインを使う場合（例：Lspsaga）は必要ないこともあります
-
 end
 
 -- 補完プラグインであるcmp_nvim_lspをLSPと連携させています（後述）

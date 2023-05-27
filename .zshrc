@@ -25,8 +25,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 alias ojgo="oj t -c \"go run ./main.go\" -d tests/"
 alias addgo="cp /Users/nakamurafumiya/go/src/work/template.go ./main.go"
 
-# starship
-eval "$(starship init zsh)"
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -153,3 +151,7 @@ alias gg='git log --graph --oneline --decorate'
 alias gk='gitk --all & '
 alias gm='git merge'
 alias gf='git fetch -p'
+
+# starship
+eval "$(starship init zsh)"
+

@@ -86,7 +86,7 @@ require("packer").startup(function(use)
           },
           ignore_focus = {},
           always_divide_middle = true,
-          globalstatus = false,
+          globalstatus = true,
           refresh = {
             statusline = 1000,
             tabline = 1000,
@@ -102,7 +102,7 @@ require("packer").startup(function(use)
 
             },
           },
-          lualine_c = {'filename'},
+          lualine_c = {{'filename', path = 1}},
           lualine_x = {'encoding', 'fileformat', 'filetype'},
           lualine_y = {'progress'},
           lualine_z = {'location'}

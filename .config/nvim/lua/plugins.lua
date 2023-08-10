@@ -126,7 +126,7 @@ require("packer").startup(function(use)
   use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
   -- Terminal
   use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
+    require("toggleterm").setup({})
   end}
   -- Comment
   use {
@@ -144,6 +144,7 @@ require("packer").startup(function(use)
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
+        auto_open = false,
       }
     end
   }

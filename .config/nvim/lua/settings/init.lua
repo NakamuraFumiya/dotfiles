@@ -54,17 +54,17 @@ vim.keymap.set('n', '<Esc><Esc>', [[:noh<CR>]], { noremap = true })
 
 -- ファイルを開いた時に、カーソルの場所を復元する
 vim.api.nvim_create_autocmd({ "BufReadPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
-	end,
+  pattern = { "*" },
+  callback = function()
+    vim.api.nvim_exec('silent! normal! g`"zv', false)
+  end,
 })
 
 vim.g.mapleader = ' '
 vim.cmd('filetype on')
 vim.cmd([[
   augroup my_common
-    autocmd!
+  autocmd!
   augroup END
 ]])
 
@@ -72,15 +72,35 @@ vim.cmd([[
 -- https://zenn.dev/hiroms/scraps/588edcf2a031a1
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = '│·',
-	extends = '⟩',
-	precedes = '⟨',
-	trail = '·',
-	eol = '↴',
-	nbsp = '%'
+  tab = '│·',
+  extends = '⟩',
+  precedes = '⟨',
+  trail = '·',
+  eol = '↴',
+  nbsp = '%'
 }
 
 vim.o.cmdheight = 0
 
 vim.o.undofile = true
 vim.o.undodir = vim.fn.expand('~/.vim/undodir')
+
+-- ターミナルのinsertモードをescで抜け出せるようにする
+vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]],{noremap=true})
+-- toggleterm上でCtrl-tを押すと閉じる設定
+vim.api.nvim_create_autocmd({ 'TermEnter' }, {
+  pattern = { 'term://*toggleterm#*' },
+  command = 'tnoremap <silent><c-t> <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>',
+})
+-- Ctrl-tを押すとtoggletermを開く設定
+-- vim.keymap.set('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm size=30 direction=horizontal"<CR>',{noremap=true})
+vim.keymap.set('n', '<C-t>', '<Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>',{ noremap=true })
+
+-- 特定のファイルタイプの場合、qでファイルを閉じられるようにする
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  pattern = { 'toggleterm, NvimTree, help' },
+  command = 'nnoremap <buffer><silent> q :q<CR>',
+})
+
+-- NvimTreeFindFile を <leader>f にマップ
+vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })

@@ -1,47 +1,43 @@
--- https://zenn.dev/takuya/articles/4472285edbc132
--- https://zenn.dev/ymgn____/scraps/13b28214ebd19f
--- https://zenn.dev/acro5piano/articles/c764669236eb0f
--- https://qiita.com/delphinus/items/8160d884d415d7425fcc
--- https://zenn.dev/malan/scraps/c258e77a616e98
--- https://zenn.dev/hisasann/articles/neovim-settings-to-lua
-vim.cmd.packadd "packer.nvim"
-
-require("packer").startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+return {
   -- LSP
-  use {
+  {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
-  }
+  },
   -- Syntax Highlight
-  use {
+  {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
-  }
+    build = ':TSUpdate'
+  },
   -- Complement
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'L3MON4D3/LuaSnip'
-  use 'saadparwaiz1/cmp_luasnip'
+  {'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
+    config = function()
+      require("configs/comp")
+    end
+  },
   -- Autopairs
-  use {
+  {
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
-  }
+  },
   -- Fuzzy Finder
-  use {
+  {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
+    dependencies = { {'nvim-lua/plenary.nvim'} }
+  },
   -- Filer
-  use {
+  {
     'nvim-tree/nvim-tree.lua',
-    requires = {
+    dependencies = {
       'nvim-tree/nvim-web-devicons', -- optional
     },
     config = function()
@@ -51,28 +47,15 @@ require("packer").startup(function(use)
         },
       }
     end
-  }
+  },
   -- Color Scheme
-  use 'Mofiqul/dracula.nvim'
-  use { "catppuccin/nvim", as = "catppuccin" }
-  use 'folke/tokyonight.nvim'
-  -- LSP saga
-  -- use({
-  --   "glepnir/lspsaga.nvim",
-  --   branch = "main",
-  --   config = function()
-  --     require("lspsaga").setup({})
-  --   end,
-  --   requires = {
-  --     {"nvim-tree/nvim-web-devicons"},
-  --     --Please make sure you install markdown and markdown_inline parser
-  --     {"nvim-treesitter/nvim-treesitter"}
-  --   }
-  -- })
+ 'Mofiqul/dracula.nvim',
+ { "catppuccin/nvim", as = "catppuccin" },
+ 'folke/tokyonight.nvim',
   -- Status Line
-  use {
+  {
     'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    dependencies = { 'nvim-tree/nvim-web-devicons', opt = true },
     config = function()
       require('lualine').setup {
         options = {
@@ -121,45 +104,45 @@ require("packer").startup(function(use)
         extensions = {}
       }
     end
-  }
+  },
   -- Buffer Line
-  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  {'akinsho/bufferline.nvim', dependencies = 'nvim-tree/nvim-web-devicons'},
   -- Terminal
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  {"akinsho/toggleterm.nvim", config = function()
     require("toggleterm").setup({})
-  end}
+  end},
   -- Comment
-  use {
+  {
       'numToStr/Comment.nvim',
       config = function()
           require('Comment').setup()
       end
-  }
+  },
   -- QuickFix
-  use {
+  {
     "folke/trouble.nvim",
-    requires = "nvim-tree/nvim-web-devicons",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup {
         -- your configuration comes here
-        -- or leave it empty to use the default settings
+        -- or leave it empty to the default settings
         -- refer to the configuration section below
         auto_open = false,
       }
     end
-  }
+  },
   -- Code Action
-  use {
+  {
     'kosayoda/nvim-lightbulb',
-    requires = 'antoinemadec/FixCursorHold.nvim',
+    dependencies = 'antoinemadec/FixCursorHold.nvim',
     config = function()
       require('nvim-lightbulb').setup({autocmd = {enabled = true}})
     end
-  }
+  },
   -- Neotest
-  use {
+  {
     "nvim-neotest/neotest",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
@@ -224,14 +207,14 @@ require("packer").startup(function(use)
         })
       end
     end
-  }
+  },
   -- GoTest
-  use {
+  {
     'buoto/gotests-vim',
     config = function()
       vim.g.gotests_template_dir = vim.fs.normalize('~/.config/gotests')
     end
-  }
+  },
   -- Golang
-  use 'mattn/vim-goimports'
-end)
+  'mattn/vim-goimports',
+}

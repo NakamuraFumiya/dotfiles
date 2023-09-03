@@ -49,9 +49,14 @@ return {
     end
   },
   -- Color Scheme
- 'Mofiqul/dracula.nvim',
- { "catppuccin/nvim", as = "catppuccin" },
- 'folke/tokyonight.nvim',
+  'Mofiqul/dracula.nvim',
+  'folke/tokyonight.nvim',
+  {
+    "catppuccin/nvim",
+    config = function()
+      require("configs/color")
+    end
+  },
   -- Status Line
   {
     'nvim-lualine/lualine.nvim',

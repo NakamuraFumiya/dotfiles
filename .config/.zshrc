@@ -1,30 +1,14 @@
-# Ruby
-export PATH="~/.rbenv/shims:/usr/local/bin:$PATH"
-eval "$(rbenv init -)"
+# vim alias
+alias vim="nvim"
 
-# godoc
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
-
-# imagemagick
-export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/imagemagick@6/lib"
-export CPPFLAGS="-I/usr/local/opt/imagemagick@6/include"
-export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/lib/pkgconfig"
-
-# nodenv
-eval "$(nodenv init -)"
-
-# Git
-export PATH="/opt/homebrew/bin:$PATH"
-
-# alacritty
-fpath+=${ZDOTDIR:-~}/.zsh_functions
-
-# atcoder
+# AtCoder
 alias ojgo="oj t -c \"go run ./main.go\" -d tests/"
-alias addgo="cp /Users/nakamurafumiya/go/src/work/template.go ./main.go"
+alias addgo="cp /Users/fumiya_nakamura/go/src/work/template.go ./main.go"
 
+# Go
+export PATH=`go env GOPATH`/bin:$PATH
+
+#==============================================================
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -102,7 +86,6 @@ plugins=(
   git
   fzf-zsh-plugin
   zsh-autosuggestions
-  # zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -133,24 +116,16 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Git alias command
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# git command alias
 alias gs='git status '
 alias ga='git add '
-alias gb='git branch '
 alias gc='git commit '
 alias gco='git checkout '
-alias gca='git commit --amend'
-alias gpo='git pull origin'
-alias gr='git rebase '
-alias gri='git rebase -i '
-alias grc='git rebase --continue'
-alias gra='git rebase --abort'
-alias gd='git diff '
-alias gdc='git diff --cached'
-alias gg='git log --graph --oneline --decorate'
-alias gk='gitk --all & '
-alias gm='git merge'
-alias gf='git fetch -p'
 
 # starship
 eval "$(starship init zsh)"

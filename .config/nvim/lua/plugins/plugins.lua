@@ -32,7 +32,12 @@ return {
   -- Fuzzy Finder
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    dependencies = { {'nvim-lua/plenary.nvim'} }
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    config = function()
+      require("configs/finder")
+    end
   },
   -- Filer
   {

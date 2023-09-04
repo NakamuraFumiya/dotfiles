@@ -229,4 +229,12 @@ return {
   },
   -- Golang
   'mattn/vim-goimports',
+  -- Git Link
+  {
+    'ruifm/gitlinker.nvim',
+    requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require"gitlinker".setup()
+    end
+  },
 }

@@ -104,3 +104,5 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 
 -- NvimTreeFindFile を <leader>f にマップ
 vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
+
+vim.o.signcolumns = "yes"

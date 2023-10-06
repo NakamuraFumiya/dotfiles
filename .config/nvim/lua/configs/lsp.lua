@@ -1,16 +1,7 @@
 -- https://zenn.dev/fukakusa_kadoma/articles/99e8f3ab855a56
 local set = vim.keymap.set
-  set("n", "gd", "<cmd>Telescope lsp_definitions<CR>")
-  set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   set("n", "<C-m>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-  set("n", "gt", "<cmd><CR>")
-  set("n", "rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
   set("n", "ma", "<cmd>lua vim.lsp.buf.code_action()<CR>")
-  set("n", "gr", "<cmd>Telescope lsp_references<CR>")
-  set('n', 'gi', "<cmd>Telescope lsp_implementations<CR>")
-  set("n", "<space>e", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>")
-  set("n", "[d", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>")
-  set("n", "]d", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>")
   set('n', 'to', "<cmd>Telescope oldfiles<CR>")
 
 local on_attach = function(client, bufnr)

@@ -15,6 +15,7 @@ if ok then
       "html",
       "json",
       "markdown",
+      "markdown_inline",
       "scala",
       "scss",
       "sql",

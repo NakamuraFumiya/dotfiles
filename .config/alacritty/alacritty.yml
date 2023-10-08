@@ -45,7 +45,7 @@ scrolling:
 # https://github.com/catppuccin/alacritty
 import:
   # uncomment the flavour you want below:
-  - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
+  - ~/.config/alacritty/catppuccin_theme/catppuccin-mocha.yml
 
 # カラースキーム(Dracula)
 #colors:

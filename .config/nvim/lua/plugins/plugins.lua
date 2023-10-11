@@ -5,6 +5,13 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   },
+  -- LSP progress
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {},
+  },
   -- Syntax Highlight
   {
     'nvim-treesitter/nvim-treesitter',

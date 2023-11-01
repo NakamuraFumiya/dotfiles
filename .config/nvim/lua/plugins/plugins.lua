@@ -296,4 +296,11 @@ return {
       require"gitlinker".setup()
     end
   },
+  -- VS Code's Git Lens
+  {
+    'APZelos/blamer.nvim',
+    config = function()
+      require("configs/blamer")
+    end
+  },
 }

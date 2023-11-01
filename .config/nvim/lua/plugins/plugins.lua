@@ -303,4 +303,8 @@ return {
       require("configs/blamer")
     end
   },
+  -- Git
+  {
+    'tpope/vim-fugitive',
+  },
 }

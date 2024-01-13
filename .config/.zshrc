@@ -4,7 +4,6 @@ alias vim="nvim"
 # AtCoder
 alias ojgo="oj t -c \"go run ./main.go\" -d tests/"
 alias addgo="cp $HOME/dotfiles/template.go ./main.go"
-# alias addgo="cp $HOME/go/src/work/template.go ./main.go"
 
 # Go
 export PATH=`go env GOPATH`/bin:$PATH

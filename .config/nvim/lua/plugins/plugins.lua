@@ -307,4 +307,8 @@ return {
   {
     'tpope/vim-fugitive',
   },
+  -- Slim
+  {
+    'slim-template/vim-slim',
+  },
 }

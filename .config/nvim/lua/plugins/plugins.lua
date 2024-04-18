@@ -311,4 +311,9 @@ return {
   {
     'slim-template/vim-slim',
   },
+  -- Copilot
+  {
+    "github/copilot.vim",
+    lazy=false,
+  },
 }

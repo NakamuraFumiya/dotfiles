@@ -217,11 +217,19 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-neotest/neotest-go"
+      "nvim-neotest/neotest-go",
+      "nvim-neotest/nvim-nio"
     },
     config = function()
       local ok, neotest = pcall(require, 'neotest')
+      if not ok then
+        print("Failed to load neotest: " .. neotest) -- デバッグ用
+      end
+
       local ok_go, neotest_go = pcall(require, 'neotest-go')
+      if not ok_go then
+        print("Failed to load neotest-go: " .. neotest_go) -- デバッグ用
+      end
 
       if ok and ok_go then 
 

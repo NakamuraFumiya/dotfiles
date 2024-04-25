@@ -220,6 +220,7 @@ return {
       "nvim-neotest/neotest-go",
       "nvim-neotest/nvim-nio"
     },
+    -- tag = "v5.0.1",
     config = function()
       local ok, neotest = pcall(require, 'neotest')
       if not ok then

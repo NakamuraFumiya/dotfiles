@@ -34,7 +34,7 @@ font:
  bold_italic:
    family: "Hack Nerd Font"
    style: Bold Italic
- size: 13
+ size: 14
 
 # スクロール設定
 scrolling:

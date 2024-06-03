@@ -107,5 +107,6 @@ vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true 
 
 vim.o.signcolumns = "yes"
 
-vim.fn.setenv("MYSQL_DEBUG", "1")
+-- MySQLのデバッグログを出力する
+-- vim.fn.setenv("MYSQL_DEBUG", "1")
 

@@ -11,3 +11,4 @@ ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 
 go install github.com/cweill/gotests/...
+go install github.com/go-delve/delve/cmd/dlv@latest

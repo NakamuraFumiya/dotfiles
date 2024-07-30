@@ -249,6 +249,13 @@ return {
           neotest.summary.open()
         end, { noremap = true, silent = true })
 
+        -- debug
+        vim.keymap.set('n', '<Leader>td', function() 
+          neotest.run.run({strategy = "dap"})
+          neotest.output_panel.open()
+          neotest.summary.open()
+        end, { noremap = true, silent = true })
+
         -- file
         vim.keymap.set('n', '<Leader>tf', function()
           neotest.run.run(vim.fn.expand("%"))

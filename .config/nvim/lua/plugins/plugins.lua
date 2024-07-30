@@ -305,6 +305,19 @@ return {
   },
   -- Golang
   'mattn/vim-goimports',
+  -- Debug Adapter Protocol
+  {
+      "leoluz/nvim-dap-go",
+      ft = "go",
+      dependencies = {
+          "rcarriga/nvim-dap-ui",
+          "theHamsta/nvim-dap-virtual-text",
+          "mfussenegger/nvim-dap",
+      },
+      config = function()
+        require("configs/dap")
+      end
+  },
   -- Git Link
   {
     'ruifm/gitlinker.nvim',
@@ -329,8 +342,8 @@ return {
     'slim-template/vim-slim',
   },
   -- Copilot
-  {
-    "github/copilot.vim",
-    lazy=false,
-  },
+  -- {
+  --   "github/copilot.vim",
+  --   lazy=false,
+  -- },
 }

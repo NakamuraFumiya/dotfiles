@@ -305,7 +305,7 @@ return {
   },
   -- Golang
   'mattn/vim-goimports',
-  -- Debug Adapter Protocol
+  -- Debug Adapter Protocol(Go)
   {
       "leoluz/nvim-dap-go",
       ft = "go",

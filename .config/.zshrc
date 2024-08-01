@@ -130,3 +130,6 @@ alias gco='git checkout '
 # starship
 eval "$(starship init zsh)"
 
+# alacritty
+export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
+

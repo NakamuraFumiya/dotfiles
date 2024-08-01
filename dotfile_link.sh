@@ -33,3 +33,7 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # Starship
 # brew install starship
+#
+# # tmux
+# brew install tmux
+

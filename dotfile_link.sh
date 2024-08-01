@@ -13,5 +13,16 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 go install github.com/cweill/gotests/...
 go install github.com/go-delve/delve/cmd/dlv@latest
 
-# 検証中コマンド
+# 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)
+
+# oh-my-zsh関連のインストール
+## oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+## fzf-zsh-plugin
+git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin
+## zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
+# starship
+brew install starship
+

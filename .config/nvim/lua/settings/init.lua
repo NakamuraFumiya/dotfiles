@@ -24,7 +24,8 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 -- mute beep sound
 vim.o.visualbell = true
-vim.o.t_vb = ''
+-- invalid option
+-- vim.o.t_vb = ''
 -- 検索結果をハイライト
 vim.o.hlsearch = true
 -- インクリメントサーチ有効
@@ -105,7 +106,8 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 -- NvimTreeFindFile を <leader>f にマップ
 vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
 
-vim.o.signcolumns = "yes"
+-- invalid option
+-- vim.o.signcolumns = "yes"
 
 -- MySQLのデバッグログを出力する
 -- vim.fn.setenv("MYSQL_DEBUG", "1")

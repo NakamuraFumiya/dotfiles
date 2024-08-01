@@ -13,6 +13,12 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 go install github.com/cweill/gotests/...
 go install github.com/go-delve/delve/cmd/dlv@latest
 
+# Neovim
+brew install neovim
+
+# Starship
+brew install starship
+
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)
 
 # oh-my-zsh関連のインストール
@@ -23,8 +29,6 @@ git clone --depth 1 https://github.com/unixorn/fzf-zsh-plugin.git ${ZSH_CUSTOM:-
 ## zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# Starship
-brew install starship
 
 # Nerd Font
 brew install font-hack-nerd-font

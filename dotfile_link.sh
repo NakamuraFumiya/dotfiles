@@ -31,6 +31,10 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 # # Neovim
 # brew install neovim
 #
+# # ripgrep
+# ## TelescopeのLive Grepで必要になる
+# brew install ripgrep
+#
 # # Starship
 # brew install starship
 #

@@ -1,5 +1,4 @@
 local ok, treesitter = pcall(require, 'nvim-treesitter.configs')
-
 if ok then
   treesitter.setup {
     highlight = {
@@ -30,3 +29,4 @@ if ok then
     },
   }
 end
+

@@ -30,3 +30,17 @@ if ok then
   }
 end
 
+require("nvim-tree").setup {
+  view = {
+    width = 50,
+  },
+  -- https://mogulla3.tech/articles/2024-01-02-configure-nvim-tree-lua-to-show-files-listed-in-gitignore/
+  filters = {
+    git_ignored = false, -- デフォルトはtrue
+    custom = {
+      "^\\.git",
+      "^node_modules",
+    },
+  },
+}
+

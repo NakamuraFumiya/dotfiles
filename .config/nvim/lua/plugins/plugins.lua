@@ -18,7 +18,8 @@ return {
     build = ':TSUpdate'
   },
   -- Complement
-  {'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
@@ -56,19 +57,6 @@ return {
     },
     config = function()
       require("configs/tree")
-      require("nvim-tree").setup {
-        view = {
-          width = 50,
-        },
-        -- https://mogulla3.tech/articles/2024-01-02-configure-nvim-tree-lua-to-show-files-listed-in-gitignore/
-        filters = {
-          git_ignored = false, -- デフォルトはtrue
-          custom = {
-            "^\\.git",
-            "^node_modules",
-          },
-        },
-      }
     end
   },
   -- Color Scheme
@@ -89,17 +77,23 @@ return {
     end
   },
   -- Buffer Line
-  {'akinsho/bufferline.nvim', dependencies = 'nvim-tree/nvim-web-devicons'},
+  {
+    'akinsho/bufferline.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+  },
   -- Terminal
-  {"akinsho/toggleterm.nvim", config = function()
-    require("toggleterm").setup({})
-  end},
+  {
+    "akinsho/toggleterm.nvim",
+    config = function()
+      require("toggleterm").setup({})
+    end
+  },
   -- Comment
   {
-      'numToStr/Comment.nvim',
-      config = function()
-          require('Comment').setup()
-      end
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
   },
   -- QuickFix
   {
@@ -107,9 +101,6 @@ return {
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
       require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to the default settings
-        -- refer to the configuration section below
         auto_open = false,
       }
     end
@@ -268,7 +259,9 @@ return {
     end
   },
   -- Golang
-  'mattn/vim-goimports',
+  {
+    'mattn/vim-goimports',
+  },
   -- Debug Adapter Protocol(Go)
   {
       "leoluz/nvim-dap-go",

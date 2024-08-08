@@ -43,4 +43,7 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # node
 # brew install node
+#
+# # awscli
+# brew install awscli
 

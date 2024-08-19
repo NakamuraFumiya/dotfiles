@@ -38,7 +38,7 @@ require("nvim-tree").setup {
   filters = {
     git_ignored = false, -- デフォルトはtrue
     custom = {
-      "^\\.git",
+      -- "^\\.git",
       "^node_modules",
     },
   },

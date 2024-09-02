@@ -10,9 +10,8 @@ ln -snf ~/dotfiles/.config/gotests ~/.config
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 
-go install github.com/cweill/gotests/...
+go install github.com/cweill/gotests/...@latest
 go install github.com/go-delve/delve/cmd/dlv@latest
-
 
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)
 # 毎回実行してもいいがログが大量に出て邪魔なため

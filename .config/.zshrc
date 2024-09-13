@@ -1,6 +1,9 @@
 # vim alias
 alias vim="nvim"
 
+# python alias
+alias python="python3"
+
 # AtCoder
 alias ojgo="oj t -c \"go run ./main.go\" -d tests/"
 alias addgo="cp $HOME/dotfiles/template.go ./main.go"

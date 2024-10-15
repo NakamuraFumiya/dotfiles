@@ -105,5 +105,5 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
 vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true })
 
 -- MySQLのデバッグログを出力する
-vim.fn.setenv("MYSQL_DEBUG", "1")
+-- vim.fn.setenv("MYSQL_DEBUG", "1")
 

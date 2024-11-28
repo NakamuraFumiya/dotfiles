@@ -51,9 +51,12 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # python
 # brew install python
+#
 # # vacuum(openapi linter)
 # brew install daveshanley/vacuum/vacuum
 #
 # # sqldef
 # brew install sqldef/sqldef/mysqldef
-
+#
+# # mysql
+# brew install mysql@8.4 

@@ -136,3 +136,6 @@ eval "$(starship init zsh)"
 # alacritty
 export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
 
+# mysql
+export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
+

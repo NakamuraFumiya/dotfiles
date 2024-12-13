@@ -60,3 +60,7 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # mysql
 # brew install mysql@8.4 
+#
+# # ast-grep
+# brew install ast-grep
+

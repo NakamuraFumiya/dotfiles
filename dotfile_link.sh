@@ -63,4 +63,8 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # ast-grep
 # brew install ast-grep
+#
+# # Atcoder
+# npm install -g atcoder-cli
+# pip3 install online-judge-tools
 

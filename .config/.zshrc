@@ -6,7 +6,7 @@ alias python="python3"
 
 # AtCoder
 alias ojgo="oj t -c \"go run ./main.go\" -d tests/"
-alias addgo="cp $HOME/dotfiles/template.go ./main.go"
+alias addgo="cp $HOME/dotfiles/templates/template.go ./main.go"
 
 # Go
 export PATH=`go env GOPATH`/bin:$PATH

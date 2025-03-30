@@ -67,4 +67,7 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 # # Atcoder
 # npm install -g atcoder-cli
 # pip3 install online-judge-tools
-
+#
+# # lsd
+# brew install lsd
+#

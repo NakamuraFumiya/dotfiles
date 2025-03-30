@@ -139,3 +139,9 @@ export PATH="/Applications/Alacritty.app/Contents/MacOS:$PATH"
 # mysql
 export PATH="/opt/homebrew/opt/mysql@8.4/bin:$PATH"
 
+# Progate CLI
+export PATH=$HOME/.progate/bin:$PATH
+
+# ls
+alias ls='lsd --classic'
+

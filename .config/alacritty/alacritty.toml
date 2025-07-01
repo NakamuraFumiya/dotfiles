@@ -1,4 +1,3 @@
-import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-mocha.toml"]
 
 [env]
 TERM = "xterm-256color"
@@ -30,4 +29,7 @@ multiplier = 3
 [window.padding]
 x = 4
 y = 4
+
+[general]
+import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-mocha.toml"]
 

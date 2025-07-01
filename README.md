@@ -5,7 +5,7 @@ bash dotfile_link.sh
 ```
 
 ## mason.nvim
-### Installed
+### Require Install
 - vtsls
 - gopls
 - typescript-language-server

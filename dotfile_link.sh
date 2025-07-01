@@ -71,3 +71,6 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 # # lsd
 # brew install lsd
 #
+# # kubernetes
+# brew install kubernetes-cli
+

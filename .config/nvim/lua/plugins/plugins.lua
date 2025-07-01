@@ -1,8 +1,10 @@
 return {
   -- LSP
   {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+   { "mason-org/mason.nvim", version = "^1.0.0" },
+   { "mason-org/mason-lspconfig.nvim", version = "^1.0.0" },
+    -- "williamboman/mason.nvim",
+    -- "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
   },
   -- LSP progress

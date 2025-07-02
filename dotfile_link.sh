@@ -81,3 +81,4 @@ brew install lsd
 
 # kubernetes
 brew install kubernetes-cli
+

@@ -188,8 +188,8 @@ return {
     'slim-template/vim-slim',
   },
   -- Copilot
-  -- {
-  --   "github/copilot.vim",
-  --   lazy=false,
-  -- },
+  {
+    "github/copilot.vim",
+    lazy=false,
+  },
 }

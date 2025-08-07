@@ -59,6 +59,8 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {
   end,
 })
 
+-- leader keyをスペースキーに設定する
+-- example: <leader>ceとキーマッピングした場合は、「スペース → c → e」と打つことでそのコマンドが実行される
 vim.g.mapleader = ' '
 vim.cmd('filetype on')
 vim.cmd([[
@@ -68,7 +70,6 @@ vim.cmd([[
 ]])
 
 -- 改行文字やスペースを可視化する
--- https://zenn.dev/hiroms/scraps/588edcf2a031a1
 vim.opt.list = true
 vim.opt.listchars = {
   tab = '│·',

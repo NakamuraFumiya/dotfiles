@@ -84,4 +84,9 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 #
 # # grpcurl
 # brew install grpcurl
+#
+# # k8s relation tools
+# brew install helm
+# brew install helmfile
+# helm plugin install https://github.com/databus23/helm-diff
 

@@ -10,12 +10,12 @@ ln -snf ~/dotfiles/.config/gotests ~/.config
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 
-go install github.com/cweill/gotests/...@latest
-go install github.com/go-delve/delve/cmd/dlv@latest
-
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)
 # 毎回実行してもいいがログが大量に出て邪魔なため
-
+#
+# go install github.com/cweill/gotests/...@latest
+# go install github.com/go-delve/delve/cmd/dlv@latest
+#
 # # oh-my-zsh関連のインストール
 # ## oh-my-zsh
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -89,4 +89,4 @@ go install github.com/go-delve/delve/cmd/dlv@latest
 # brew install helm
 # brew install helmfile
 # helm plugin install https://github.com/databus23/helm-diff
-
+brew install kube-ps1

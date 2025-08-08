@@ -92,4 +92,7 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 # brew install kube-ps1
 # brew install derailed/k9s/k9s
 # brew install stern
+#
+# # tree
+# brew install tree
 

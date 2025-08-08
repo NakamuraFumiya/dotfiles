@@ -147,6 +147,7 @@ alias ls='lsd --classic'
 
 ## kubectl
 alias k="kubectl"
+alias kx="kubectx"
 
 # Created by `pipx`
 # the python commands are often installed here

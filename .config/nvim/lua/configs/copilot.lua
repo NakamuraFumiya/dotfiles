@@ -11,3 +11,6 @@ vim.keymap.set('n', '<leader>cs', ':Copilot setup<CR>', { noremap = true, silent
 -- ステータス確認を <leader>ct に割り当て
 vim.keymap.set('n', '<leader>ct', ':Copilot status<CR>', { noremap = true, silent = true })
 
+-- CopilotをデフォルトでOFFに設定
+vim.cmd("let g:copilot_enabled = 0")
+

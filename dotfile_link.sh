@@ -89,4 +89,6 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 # brew install helm
 # brew install helmfile
 # helm plugin install https://github.com/databus23/helm-diff
-brew install kube-ps1
+# brew install kube-ps1
+# brew install derailed/k9s/k9s
+

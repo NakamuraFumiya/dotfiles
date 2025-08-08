@@ -145,6 +145,10 @@ export PATH=$HOME/.progate/bin:$PATH
 # ls
 alias ls='lsd --classic'
 
-# Created by `pipx` on 2025-07-02 02:13:14
+## kubectl
+alias k="kubectl"
+
+# Created by `pipx`
+# the python commands are often installed here
 export PATH="$PATH:/Users/fumiyanakamura/.local/bin"
 

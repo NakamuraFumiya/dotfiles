@@ -10,6 +10,7 @@ alias addgo="cp $HOME/dotfiles/templates/template.go ./main.go"
 
 # Go
 export PATH=`go env GOPATH`/bin:$PATH
+export GOPATH="$HOME/go"
 
 #==============================================================
 

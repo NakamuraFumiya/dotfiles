@@ -141,6 +141,7 @@ return {
     end
   },
   -- GoTest
+  -- https://github.com/buoto/gotests-vim
   {
     'buoto/gotests-vim',
     config = function()

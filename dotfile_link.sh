@@ -95,4 +95,7 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 #
 # # tree
 # brew install tree
+#
+# # terraform
+# brew install terraform
 

@@ -154,3 +154,5 @@ alias kx="kubectx"
 # the python commands are often installed here
 export PATH="$PATH:/Users/fumiyanakamura/.local/bin"
 
+# terraform alias
+alias tf="terraform"

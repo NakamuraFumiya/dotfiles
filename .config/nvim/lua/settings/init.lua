@@ -108,3 +108,7 @@ vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true 
 -- MySQLのデバッグログを出力する
 -- vim.fn.setenv("MYSQL_DEBUG", "1")
 
+-- コマンドラインで 'chat' と入力すると CopilotChat が実行されるように設定
+-- ref: https://zenn.dev/kawarimidoll/books/6064bf6f193b51/viewer/90a5be#copilotc-nvim%2Fcopilotchat.nvim
+vim.keymap.set('ca', 'chat', 'CopilotChat', { desc = 'Ask CopilotChat' })
+

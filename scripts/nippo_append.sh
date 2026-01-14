@@ -4,9 +4,9 @@ ARGUMENTS="$*"
 DATE=$(date +%Y-%m-%d)
 JPDAY=$(date +%Y年%m月%d日)
 NOW=$(date +%H:%M)
-DIR="$HOME/dotfiles/daily_reports"
+DIR="$HOME/dotfiles/nippos"
 mkdir -p "$DIR"
-FILE="$DIR/daily_report.${DATE}.md"
+FILE="$DIR/nippo.${DATE}.md"
 
 # テンプレート
 create_template() {

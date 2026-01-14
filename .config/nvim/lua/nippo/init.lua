@@ -16,3 +16,6 @@ vim.keymap.set("n", "<leader>na", function()
     vim.cmd("NippoAppend " .. input)
   end
 end, { noremap = true, silent = true })
+
+-- 日報完成機能を読み込み
+require('nippo.finalize')

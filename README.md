@@ -14,3 +14,14 @@ bash dotfile_link.sh
 - typescript-language-server
 - vtsls
 
+## daily report
+### Init
+```
+chmod +x scripts/daily_report_append.sh
+```
+
+### Usage
+```
+npa {add comment to nippo}
+```
+

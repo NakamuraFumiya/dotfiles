@@ -15,13 +15,13 @@ Go言語で作成された高速で保守性の高い日報システムです。
 ### 1. Goプログラムのビルド
 ```bash
 cd ~/dotfiles/scripts/nippo-go
-go build -o ../nippo .
+go build -o nippo .
 ```
 
 ### 2. エイリアスの設定確認
 ```bash
 # .zshrcに以下が設定されていることを確認
-alias npa="$HOME/dotfiles/scripts/nippo"
+alias npa="$HOME/dotfiles/scripts/nippo-go/nippo"
 ```
 
 ### 3. 設定の反映
@@ -115,16 +115,19 @@ npa "目標:API開発 進捗:設計完了 学び:新技術 気づき:重要な�
 
 ```
 dotfiles/
+├── docs/
+│   └── NIPPO_GUIDE.md         # このガイドファイル
 ├── scripts/
-│   ├── nippo                 # Goバイナリ（メイン）
-│   └── nippo-go/           # Goソースコード
-│       ├── main.go         # メインプログラム
-│       ├── sections.go     # セクション処理
-│       └── go.mod          # Go modules
-├── nippos/                 # 日報ファイル保存場所
+│   └── nippo-go/              # 日報システム
+│       ├── main.go            # メインプログラム
+│       ├── sections.go        # セクション処理
+│       ├── nippo              # Goバイナリ（メイン）
+│       ├── go.mod             # Go modules
+│       └── NIPPO_FINALIZE_AI.md # AI完成プロンプト
+├── nippos/                    # 日報ファイル保存場所
 │   ├── nippo.2026-01-15.md
 │   └── nippo.2026-01-16.md
-└── NIPPO_FINALIZE_AI.md    # AI完成プロンプト
+└── README.md                  # プロジェクト概要
 ```
 
 ## 📅 生成される日報の構造
@@ -162,7 +165,7 @@ API開発を進めた
 ```bash
 cd ~/dotfiles/scripts/nippo-go
 go mod tidy
-go build -o ../nippo .
+go build -o nippo .
 ```
 
 ### npaコマンドが見つからない場合
@@ -171,7 +174,7 @@ go build -o ../nippo .
 alias | grep npa
 
 # 手動実行
-$HOME/dotfiles/scripts/nippo "テスト"
+$HOME/dotfiles/scripts/nippo-go/nippo "テスト"
 ```
 
 ### ファイルが作成されない場合
@@ -180,8 +183,8 @@ $HOME/dotfiles/scripts/nippo "テスト"
 ls ~/dotfiles/nippos/
 
 # 権限の確認
-ls -la ~/dotfiles/scripts/nippo
-chmod +x ~/dotfiles/scripts/nippo
+ls -la ~/dotfiles/scripts/nippo-go/nippo
+chmod +x ~/dotfiles/scripts/nippo-go/nippo
 ```
 
 ## 💡 使用例

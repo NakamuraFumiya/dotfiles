@@ -1,7 +1,7 @@
 vim.api.nvim_create_user_command('NippoAppend', function(opts)
   if opts.args ~= "" then
     -- 新しいGoプログラムを使用
-    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo")
+    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo-go/nippo")
     local cmd = string.format("'%s' '%s'", nippo_bin, opts.args)
     local result = os.execute(cmd)
     if result == 0 then

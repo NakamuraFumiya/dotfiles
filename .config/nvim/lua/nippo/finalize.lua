@@ -9,7 +9,7 @@ end
 
 -- 日報完成プロンプトを読み込み
 local function get_finalize_prompt()
-  local prompt_file = vim.fn.expand("~/dotfiles/NIPPO_FINALIZE_AI.md")
+  local prompt_file = vim.fn.expand("~/dotfiles/scripts/nippo-go/NIPPO_FINALIZE_AI.md")
   local file = io.open(prompt_file, "r")
   if not file then
     vim.notify("プロンプトファイルが見つかりません: " .. prompt_file, vim.log.levels.ERROR)
@@ -130,7 +130,7 @@ function M.open_nippo()
   local file = io.open(nippo_path, "r")
   if not file then
     -- 新しいGoプログラムを呼び出してテンプレートを作成
-    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo")
+    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo-go/nippo")
     local cmd = string.format("'%s' '初回起動'", nippo_bin)
     local result = os.execute(cmd)
     if result == 0 then

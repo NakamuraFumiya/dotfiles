@@ -4,7 +4,7 @@
 本日の日報（`/nippos/nippo.$(date +%Y-%m-%d).md`）を分析し、未完成のセクションを自動補完して完成させる。
 
 ## 分析対象ファイル
-`/Users/fumiyanakamura/dotfiles/nippos/nippo.$(date +%Y-%m-%d).md`
+`$HOME/dotfiles/nippos/nippo.$(date +%Y-%m-%d).md`
 
 ## 実行指示
 

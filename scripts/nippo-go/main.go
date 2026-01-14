@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -96,12 +97,93 @@ func (n *NippoManager) AppendWorkLog(content string) error {
 	return os.WriteFile(n.FilePath, []byte(strings.Join(result, "\n")), 0644)
 }
 
+func copyDir(src, dst string) error {
+	return filepath.Walk(src, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+
+		// 相対パスを取得
+		relPath, err := filepath.Rel(src, path)
+		if err != nil {
+			return err
+		}
+
+		// .gitディレクトリはスキップ
+		if strings.Contains(relPath, ".git") {
+			if info.IsDir() {
+				return filepath.SkipDir
+			}
+			return nil
+		}
+
+		dstPath := filepath.Join(dst, relPath)
+
+		if info.IsDir() {
+			return os.MkdirAll(dstPath, info.Mode())
+		}
+
+		// ファイルをコピー
+		return copyFile(path, dstPath)
+	})
+}
+
+func copyFile(src, dst string) error {
+	sourceFile, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer sourceFile.Close()
+
+	// ディレクトリが存在しない場合は作成
+	if err := os.MkdirAll(filepath.Dir(dst), 0755); err != nil {
+		return err
+	}
+
+	destFile, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer destFile.Close()
+
+	_, err = io.Copy(destFile, sourceFile)
+	return err
+}
+
+func showUsage() {
+	fmt.Println("使用法:")
+	fmt.Println("  nippo <内容>          日報に内容を追記")
+	fmt.Println("  nippo copy           nipposディレクトリを$HOME/nippoにコピー")
+}
+
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("使用法: nippo <内容>")
+		showUsage()
 		os.Exit(1)
 	}
 
+	// copyサブコマンドの処理
+	if os.Args[1] == "copy" {
+		homeDir, _ := os.UserHomeDir()
+		srcDir := filepath.Join(homeDir, "dotfiles", "nippos")
+		dstDir := filepath.Join(homeDir, "nippo")
+
+		// ソースディレクトリが存在するかチェック
+		if _, err := os.Stat(srcDir); os.IsNotExist(err) {
+			log.Fatalf("ソースディレクトリが存在しません: %s", srcDir)
+		}
+
+		fmt.Printf("コピー中: %s → %s\n", srcDir, dstDir)
+
+		if err := copyDir(srcDir, dstDir); err != nil {
+			log.Fatalf("コピーに失敗しました: %v", err)
+		}
+
+		fmt.Println("コピー完了！")
+		return
+	}
+
+	// 通常の日報追記処理
 	content := strings.Join(os.Args[1:], " ")
 	nippo := NewNippoManager()
 	processor := NewSectionProcessor(nippo)

@@ -18,7 +18,12 @@ type NippoManager struct {
 func NewNippoManager() *NippoManager {
 	now := time.Now()
 	homeDir, _ := os.UserHomeDir()
-	baseDir := filepath.Join(homeDir, "dotfiles", "nippos")
+
+	// 年度・月でディレクトリ分け
+	year := now.Format("2006")
+	month := now.Format("01")
+	baseDir := filepath.Join(homeDir, "dotfiles", "nippos", year, month)
+
 	fileName := fmt.Sprintf("nippo.%s.md", now.Format("2006-01-02"))
 	filePath := filepath.Join(baseDir, fileName)
 

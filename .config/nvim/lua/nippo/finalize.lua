@@ -4,7 +4,9 @@ local M = {}
 -- 現在の日付から日報ファイルのパスを取得
 local function get_nippo_path()
   local date = os.date("%Y-%m-%d")
-  return vim.fn.expand("~/dotfiles/nippos/nippo." .. date .. ".md")
+  local year = os.date("%Y")
+  local month = os.date("%m")
+  return vim.fn.expand("~/dotfiles/nippos/" .. year .. "/" .. month .. "/nippo." .. date .. ".md")
 end
 
 -- 日報完成プロンプトを読み込み

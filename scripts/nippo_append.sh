@@ -80,12 +80,14 @@ append_to_section(){
 }
 
 check_done_in_goals(){
-  awk '
-    /^- \[ \] /{ if(match($0, ENVIRON["GOALCHECK"])) {
-      sub("- [ ]", "- [x]")
-    } }
+  awk -v goaltext="$1" '
+    /^- \[ \] /{ 
+      if(index($0, goaltext) > 0) {
+        sub("- \\[ \\]", "- [x]")
+      } 
+    }
     { print }
-  ' GOALCHECK="$1" "$FILE" > "${FILE}.tmp"
+  ' "$FILE" > "${FILE}.tmp"
   mv "${FILE}.tmp" "$FILE"
 }
 

@@ -66,7 +66,7 @@ append_to_section(){
       print
       if(!added && $0 ~ target) {
         getline buf
-        if(buf ~ /（本日終了時に記入）|（随時追記）/) {
+        if(buf ~ /（本日終了時に記入）|（随時追記）|（後で記入）|（セッション終了時に記入）/) {
           print buf
           print new
           added=1
@@ -101,12 +101,42 @@ append_worklog
 
 # -------- 特別処理
 if echo "$ARGUMENTS" | grep -q "振り返り:"; then
-  FB_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*振り返り:\(.*\)\(明日:.*\)\?/• \1/p')
+  FB_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*振り返り:\(.*\)/• \1/p' | sed 's/ *明日:.*$//')
   append_to_section "## 💡 学びと気づき" "$FB_CONTENT"
 fi
+if echo "$ARGUMENTS" | grep -q "学び:"; then
+  # スペース区切りで分割し、学び:で始まる項目を処理
+  echo "$ARGUMENTS" | tr ' ' '\n' | while read -r item; do
+    if echo "$item" | grep -q "^学び:"; then
+      CONTENT=$(echo "$item" | sed 's/^学び://')
+      if [ -n "$CONTENT" ]; then
+        append_to_section "## 💡 学びと気づき" "• $CONTENT"
+      fi
+    fi
+  done
+fi
+if echo "$ARGUMENTS" | grep -q "気づき:"; then
+  # スペース区切りで分割し、気づき:で始まる項目を処理
+  echo "$ARGUMENTS" | tr ' ' '\n' | while read -r item; do
+    if echo "$item" | grep -q "^気づき:"; then
+      CONTENT=$(echo "$item" | sed 's/^気づき://')
+      if [ -n "$CONTENT" ]; then
+        append_to_section "## 💡 学びと気づき" "• $CONTENT"
+      fi
+    fi
+  done
+fi
 if echo "$ARGUMENTS" | grep -q "明日:"; then
-  NEXT_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*明日:\(.*\)\(目標達成:.*\)\?/• \1/p')
+  NEXT_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*明日:\(.*\)/• \1/p' | sed 's/ *目標達成:.*$//')
   append_to_section "## 🚀 明日への申し送り" "$NEXT_CONTENT"
+fi
+if echo "$ARGUMENTS" | grep -q "目標:"; then
+  GOAL_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*目標:\(.*\)/- [ ] \1/p' | sed 's/ *進捗:.*$//')
+  append_to_section "## 🎯 今日の目標" "$GOAL_CONTENT"
+fi
+if echo "$ARGUMENTS" | grep -q "進捗:"; then
+  PROGRESS_CONTENT=$(echo "$ARGUMENTS" | sed -n 's/.*進捗:\(.*\)/• \1/p' | sed 's/ *学び:.*$//' | sed 's/ *気づき:.*$//')
+  append_to_section "## 📊 進捗状況" "$PROGRESS_CONTENT"
 fi
 if echo "$ARGUMENTS" | grep -q "目標達成:"; then
   GCHECK=$(echo "$ARGUMENTS" | sed -n 's/.*目標達成:\(.*\)/\1/p')

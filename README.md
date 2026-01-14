@@ -1,4 +1,5 @@
 # dotfiles
+
 ## setup
 ```
 bash dotfile_link.sh
@@ -13,4 +14,3 @@ bash dotfile_link.sh
 - kube-linter
 - typescript-language-server
 - vtsls
-

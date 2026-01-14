@@ -158,5 +158,5 @@ export PATH="$PATH:/Users/fumiyanakamura/.local/bin"
 alias tf="terraform"
 
 # nippo
-alias npa="$HOME/dotfiles/scripts/nippo_append.sh"
+alias npa="$HOME/dotfiles/scripts/nippo"
 

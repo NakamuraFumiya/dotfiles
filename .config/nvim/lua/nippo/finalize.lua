@@ -9,7 +9,7 @@ end
 
 -- 日報完成プロンプトを読み込み
 local function get_finalize_prompt()
-  local prompt_file = vim.fn.expand("~/dotfiles/nippo_finalize_ai.md")
+  local prompt_file = vim.fn.expand("~/dotfiles/NIPPO_FINALIZE_AI.md")
   local file = io.open(prompt_file, "r")
   if not file then
     vim.notify("プロンプトファイルが見つかりません: " .. prompt_file, vim.log.levels.ERROR)

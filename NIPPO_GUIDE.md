@@ -117,7 +117,6 @@ npa "目標:API開発 進捗:設計完了 学び:新技術 気づき:重要な�
 dotfiles/
 ├── scripts/
 │   ├── nippo                 # Goバイナリ（メイン）
-│   ├── nippo_append.sh      # 旧シェルスクリプト版（バックアップ）
 │   └── nippo-go/           # Goソースコード
 │       ├── main.go         # メインプログラム
 │       ├── sections.go     # セクション処理

@@ -1,9 +1,14 @@
 vim.api.nvim_create_user_command('NippoAppend', function(opts)
   if opts.args ~= "" then
-    -- 外部nippo_append.shを使い、引数を渡して実行
-    local cmd = string.format("bash ~/dotfiles/scripts/nippo_append.sh '%s'", opts.args)
-    os.execute(cmd)
-    print("日報に追記しました！")
+    -- 新しいGoプログラムを使用
+    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo")
+    local cmd = string.format("'%s' '%s'", nippo_bin, opts.args)
+    local result = os.execute(cmd)
+    if result == 0 then
+      print("日報に追記しました！")
+    else
+      print("日報の追記に失敗しました")
+    end
   else
     print("内容を入力してください")
   end

@@ -129,10 +129,15 @@ function M.open_nippo()
   -- ファイルが存在しない場合、テンプレートを作成
   local file = io.open(nippo_path, "r")
   if not file then
-    -- nippo_append.shを呼び出してテンプレートを作成
-    local cmd = string.format("bash ~/dotfiles/scripts/nippo_append.sh '%s'", "初回起動")
-    os.execute(cmd)
-    vim.notify("新しい日報ファイルを作成しました: " .. nippo_path, vim.log.levels.INFO)
+    -- 新しいGoプログラムを呼び出してテンプレートを作成
+    local nippo_bin = vim.fn.expand("~/dotfiles/scripts/nippo")
+    local cmd = string.format("'%s' '初回起動'", nippo_bin)
+    local result = os.execute(cmd)
+    if result == 0 then
+      vim.notify("新しい日報ファイルを作成しました: " .. nippo_path, vim.log.levels.INFO)
+    else
+      vim.notify("日報ファイルの作成に失敗しました", vim.log.levels.ERROR)
+    end
   else
     file:close()
   end

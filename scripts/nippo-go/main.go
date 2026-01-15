@@ -198,12 +198,12 @@ func main() {
 		if err := nippo.CreateTemplate(content); err != nil {
 			log.Fatalf("テンプレートの作成に失敗: %v", err)
 		}
-		return
-	}
-
-	// 既存ファイルに追記
-	if err := nippo.AppendWorkLog(content); err != nil {
-		log.Fatalf("作業ログの追記に失敗: %v", err)
+		// テンプレート作成後もセクション処理を続行
+	} else {
+		// 既存ファイルに追記
+		if err := nippo.AppendWorkLog(content); err != nil {
+			log.Fatalf("作業ログの追記に失敗: %v", err)
+		}
 	}
 
 	// セクション別の特別処理

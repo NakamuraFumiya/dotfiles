@@ -127,3 +127,12 @@ vim.keymap.set('n', '<leader>yr', function()
   vim.fn.setreg('"', path)
   print('Copied: ' .. path)
 end, { desc = 'Copy relative path' })
+
+-- 相対ディレクトリパスをコピー
+vim.keymap.set('n', '<leader>yd', function()
+  local dir_path = vim.fn.expand('%:h')
+  vim.fn.setreg('+', dir_path)
+  vim.fn.setreg('"', dir_path)
+  print('Copied directory: ' .. dir_path)
+end, { desc = 'Copy relative directory path' })
+

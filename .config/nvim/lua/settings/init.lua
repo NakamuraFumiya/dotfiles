@@ -112,3 +112,18 @@ vim.api.nvim_set_keymap('n', '<C-f>', ':NvimTreeFindFile<CR>', { noremap = true 
 -- ref: https://zenn.dev/kawarimidoll/books/6064bf6f193b51/viewer/90a5be#copilotc-nvim%2Fcopilotchat.nvim
 vim.keymap.set('ca', 'cc', 'CopilotChat', { desc = 'Ask CopilotChat' })
 
+-- フルパスをクリップボードにコピー
+vim.keymap.set('n', '<leader>yf', function()
+  local path = vim.fn.expand('%:p')
+  vim.fn.setreg('+', path)  -- システムクリップボード
+  vim.fn.setreg('"', path)  -- デフォルトレジスタ
+  print('Copied: ' .. path)
+end, { desc = 'Copy full path' })
+
+-- 相対パスをコピー
+vim.keymap.set('n', '<leader>yr', function()
+  local path = vim.fn.expand('%')
+  vim.fn.setreg('+', path)
+  vim.fn.setreg('"', path)
+  print('Copied: ' .. path)
+end, { desc = 'Copy relative path' })

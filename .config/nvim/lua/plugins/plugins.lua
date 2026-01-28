@@ -41,6 +41,18 @@ return {
       require("nvim-autopairs").setup {}
     end
   },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close = true,          -- タグの自動閉じ
+          enable_rename = true,         -- ペアタグ名の自動リネーム
+          enable_close_on_slash = false -- </ での自動閉じ無効
+        },
+      })
+    end
+  },
   -- Fuzzy Finder
   {
     'nvim-telescope/telescope.nvim', tag = '0.1.4',

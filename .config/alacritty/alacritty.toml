@@ -35,4 +35,5 @@ import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-m
 
 [window]
 opacity = 0.6
+blur = true
 

@@ -26,5 +26,10 @@ config.window_background_gradient = {
   colors = { "#000000" },
 }
 
+-- タブバーの+を消す
+config.show_new_tab_button_in_tab_bar = false
+
+require("appearance").apply_to_config(config)
+
 return config
 

@@ -21,5 +21,10 @@ config.window_frame = {
   active_titlebar_bg = "none",
 }
 
+-- タブバーを背景と同じ色にする
+config.window_background_gradient = {
+  colors = { "#000000" },
+}
+
 return config
 

@@ -33,3 +33,6 @@ y = 4
 [general]
 import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-mocha.toml"]
 
+[window]
+opacity = 0.6
+

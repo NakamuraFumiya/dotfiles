@@ -6,11 +6,11 @@ config.automatically_reload_config = true
 
 -- フォント
 config.font = wezterm.font('JetBrainsMono NF')
-config.font_size = 12.0
+config.font_size = 12.5
 config.use_ime = true
 
 -- 背景透過設定
-config.window_background_opacity = 0.75
+config.window_background_opacity = 0.82
 config.macos_window_background_blur = 20
 
 -- タブバー上部のタイトルバー削除

@@ -4,7 +4,7 @@ TERM = "xterm-256color"
 opacity = "0.6"
 
 [font]
-size = 12.0
+size = 13.0
 
 [font.bold]
 family = "Hack Nerd Font"

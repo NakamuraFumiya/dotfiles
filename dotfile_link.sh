@@ -28,6 +28,10 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 # # Nerd Font
 # brew install font-hack-nerd-font
 #
+# # JetBrainsMono Nerd Font
+# brew search jetbrains
+# brew install font-jetbrains-mono-nerd-font
+#
 # # Neovim
 # brew install neovim
 #

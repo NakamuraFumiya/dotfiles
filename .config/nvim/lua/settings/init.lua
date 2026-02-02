@@ -1,7 +1,7 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- vim.o.guifont = 'JetBrainsMono Nerd Font'
+vim.o.guifont = 'JetBrainsMono Nerd Font:h12'
 -- vim.o.guifont = 'HackGen35 Console NFJ'
 -- vim.o.guicursor = 'n-v-c:block,i:ver1'
 -- マルチコードに対応

@@ -10,7 +10,7 @@ config.font_size = 12.0
 config.use_ime = true
 
 -- 背景透過設定
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.75
 config.macos_window_background_blur = 20
 
 -- タブバー上部のタイトルバー削除

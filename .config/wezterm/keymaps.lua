@@ -90,7 +90,7 @@ local keys = {
   { key = "q", mods = "SUPER", action = act.QuitApplication },
   -- ウィンドウ操作
   { key = "Enter", mods = "ALT", action = act.ToggleFullScreen },
-  { key = "n", mods = "SUPER", action = act.SpawnWindow },
+  { key = "n", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
   -- タブ操作
   { key = "Tab", mods = "CTRL", action = act.ActivateTabRelative(1) },
   { key = "Tab", mods = "SHIFT|CTRL", action = act.ActivateTabRelative(-1) },

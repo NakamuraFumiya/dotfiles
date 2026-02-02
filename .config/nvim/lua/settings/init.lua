@@ -48,6 +48,34 @@ vim.o.clipboard = 'unnamed'
 
 vim.keymap.set('v', 'x', [["_x]], { noremap = true})
 vim.keymap.set('n', 'x', [["_x]], { noremap = true})
+
+-- 背景透過設定
+vim.o.termguicolors = true -- True color サポート
+vim.o.background = 'dark'
+
+-- 透過背景を有効にする関数
+local function enable_transparency()
+  -- 基本的な背景を透過
+  vim.cmd([[
+    highlight Normal guibg=NONE ctermbg=NONE
+    highlight NonText guibg=NONE ctermbg=NONE
+    highlight LineNr guibg=NONE ctermbg=NONE
+    highlight Folded guibg=NONE ctermbg=NONE
+    highlight EndOfBuffer guibg=NONE ctermbg=NONE
+    highlight SignColumn guibg=NONE ctermbg=NONE
+    highlight VertSplit guibg=NONE ctermbg=NONE
+    highlight StatusLine guibg=NONE ctermbg=NONE
+    highlight StatusLineNC guibg=NONE ctermbg=NONE
+    highlight TabLine guibg=NONE ctermbg=NONE
+    highlight TabLineFill guibg=NONE ctermbg=NONE
+    highlight TabLineSel guibg=NONE ctermbg=NONE
+  ]])
+end
+
+-- カラースキーム読み込み後に透過設定を適用
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = enable_transparency
+})
 -- 検索のハイライトを解除
 vim.keymap.set('n', '<Esc><Esc>', [[:noh<CR>]], { noremap = true })
 

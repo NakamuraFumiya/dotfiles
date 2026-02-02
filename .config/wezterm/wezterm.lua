@@ -5,7 +5,8 @@ local config = wezterm.config_builder()
 config.automatically_reload_config = true
 
 -- フォント
-config.font = wezterm.font('JetBrainsMono NF')
+-- config.font = wezterm.font('JetBrainsMono NF')
+config.font = wezterm.font('Hack Nerd Font')
 config.font_size = 12.5
 config.use_ime = true
 

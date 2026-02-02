@@ -1,6 +1,8 @@
 local wezterm = require("wezterm")
 local module = {}
 
+local border_color = "#b8f9fa"
+
 local appearance = {
   color_scheme = "Catppuccin Mocha",
 
@@ -29,6 +31,16 @@ local appearance = {
   window_frame = {
     inactive_titlebar_bg = "none",
     active_titlebar_bg = "none",
+
+    -- ターミナルに枠線をつける
+    border_left_width = "8px",
+    border_right_width = "8px",
+    border_bottom_height = "8px",
+    border_top_height = "8px",
+    border_left_color = border_color,
+    border_right_color = border_color,
+    border_bottom_color = border_color,
+    border_top_color = border_color,
   },
   -- Hide borders between tabs
   colors = {

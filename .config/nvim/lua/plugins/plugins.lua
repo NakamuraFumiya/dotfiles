@@ -117,6 +117,7 @@ return {
       require("trouble").setup {
         auto_open = false,
       }
+      require("configs/trouble")
     end
   },
   -- Code Action

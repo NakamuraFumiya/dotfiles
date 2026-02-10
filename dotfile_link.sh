@@ -103,4 +103,7 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 #
 # # terraform
 # brew install terraform
+#
+# # tsc
+# brew install tsc
 

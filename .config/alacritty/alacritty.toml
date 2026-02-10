@@ -36,6 +36,8 @@ import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-l
 [window]
 opacity = 0.6
 blur = true
+decorations = "none"         # ウィンドウの枠（バーなど）を消す
+startup_mode = "Maximized"   # 起動時に最大化（完全な全画面化ではない）
 
 [keyboard]
 bindings = [

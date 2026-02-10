@@ -46,6 +46,12 @@ vim.o.visualbell = false
 -- yankをクリップボードに
 vim.o.clipboard = 'unnamed'
 
+-- キーシーケンスによる待ち時間を短縮してリピート中断を防ぐ
+vim.o.timeout = true
+vim.o.ttimeout = true
+vim.o.timeoutlen = 300
+vim.o.ttimeoutlen = 10
+
 vim.keymap.set('v', 'x', [["_x]], { noremap = true})
 vim.keymap.set('n', 'x', [["_x]], { noremap = true})
 

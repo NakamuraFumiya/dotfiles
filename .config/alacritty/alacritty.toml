@@ -31,9 +31,14 @@ x = 4
 y = 4
 
 [general]
-import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-mocha.toml"]
+import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-latte.toml"]
 
 [window]
 opacity = 0.6
 blur = true
+
+[keyboard]
+bindings = [
+  { key = "Enter", mods = "Alt", action = "ToggleFullscreen" }, # フルスクリーン切替
+]
 

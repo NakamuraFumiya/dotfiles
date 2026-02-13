@@ -106,4 +106,7 @@ ln -snf ~/dotfiles/.config/.vimrc ~/
 #
 # # tsc
 # brew install tsc
+#
+# # claude code
+# curl -fsSL https://claude.ai/install.sh | bash
 

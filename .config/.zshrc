@@ -160,3 +160,22 @@ alias tf="terraform"
 # nippo
 alias npa="$HOME/dotfiles/scripts/nippo-go/nippo"
 
+# ==========================================
+# Claude Code エイリアス
+# ==========================================
+alias c='claude'
+alias cfix='claude "このコードのバグを修正して"'
+alias ctest='claude "このコードのテストを追加して"'
+alias creview='claude "このコードをレビューして"'
+alias crefactor='claude "このコードをリファクタリングして"'
+
+# ファイル指定
+cfile() {
+  local file="$1"
+  shift
+  claude "$(pwd)/$file について: $*"
+}
+
+# 使用記録（オプション - 制限把握用）
+alias clog='echo "$(date "+%Y-%m-%d %H:%M") Claude使用" >> ~/claude_usage.log'
+

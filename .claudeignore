@@ -1,0 +1,46 @@
+# 依存関係
+node_modules/
+vendor/
+.bundle/
+
+# ビルド成果物
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Git
+.git/
+
+# 環境変数・機密
+.env
+.env.*
+*.key
+*.pem
+config/secrets.*
+credentials/
+
+# キャッシュ・ログ
+.cache/
+*.log
+tmp/
+
+# テスト・カバレッジ
+coverage/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# メディア
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.pdf
+*.mp4
+

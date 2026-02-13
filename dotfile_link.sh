@@ -10,6 +10,8 @@ ln -snf ~/dotfiles/.config/wezterm ~/.config
 ln -snf ~/dotfiles/.config/gotests ~/.config
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
+ln -snf ~/dotfiles/.claudeignore ~/.claudeignore
+
 
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)
 # 毎回実行してもいいがログが大量に出て邪魔なため

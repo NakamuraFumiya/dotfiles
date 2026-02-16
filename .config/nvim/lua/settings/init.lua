@@ -46,6 +46,13 @@ vim.o.visualbell = false
 -- yankをクリップボードに
 vim.o.clipboard = 'unnamed'
 
+-- 外部でファイルが変更された場合に自動で読み込み直す
+vim.o.autoread = true
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter' }, {
+  pattern = { '*' },
+  command = 'checktime',
+})
+
 -- キーシーケンスによる待ち時間を短縮してリピート中断を防ぐ
 vim.o.timeout = true
 vim.o.ttimeout = true

@@ -7,7 +7,7 @@ allowed-tools: Read, Edit, Glob, Bash
 # 日報完成プロンプト
 
 ## 分析対象ファイル
-`$HOME/dotfiles/nippos/nippo.$(date +%Y-%m-%d).md`
+`$HOME/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
 
 ## 実行指示
 

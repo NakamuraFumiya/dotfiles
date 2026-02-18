@@ -33,7 +33,7 @@ claude mcp add mcp-atlassian \
   -e JIRA_URL="$JIRA_URL" \
   -e JIRA_USERNAME="$JIRA_USERNAME" \
   -e JIRA_API_TOKEN="$JIRA_API_TOKEN" \
-  -- uvx mcp-atlassian
+  -- uvx --python 3.13 mcp-atlassian
 
 echo "==> Kibela MCP を登録..."
 claude mcp add kibela \

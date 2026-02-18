@@ -113,4 +113,7 @@ ln -snf ~/dotfiles/.claude/settings.json ~/.claude/settings.json
 #
 # # claude code
 # curl -fsSL https://claude.ai/install.sh | bash
+#
+# # gh
+#  brew install gh
 

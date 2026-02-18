@@ -12,6 +12,7 @@ ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 ln -snf ~/dotfiles/.claudeignore ~/.claudeignore
 ln -snf ~/dotfiles/.claude/skills ~/.claude/skills
+ln -snf ~/dotfiles/.claude/settings.json ~/.claude/settings.json
 
 
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)

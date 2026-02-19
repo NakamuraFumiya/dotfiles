@@ -33,7 +33,8 @@ claude mcp add mcp-atlassian \
   -e JIRA_URL="$JIRA_URL" \
   -e JIRA_USERNAME="$JIRA_USERNAME" \
   -e JIRA_API_TOKEN="$JIRA_API_TOKEN" \
-  -- uvx --python 3.13 mcp-atlassian
+  -- uvx --python 3.13 mcp-atlassian \
+  || echo "  (スキップ: 既に登録済み)"
 
 echo "==> Kibela MCP を登録..."
 claude mcp add kibela \
@@ -43,7 +44,15 @@ claude mcp add kibela \
   -- docker run -i \
     -e KIBELA_ORIGIN \
     -e KIBELA_ACCESS_TOKEN \
-    ghcr.io/kibela/kibela-mcp-server
+    ghcr.io/kibela/kibela-mcp-server \
+  || echo "  (スキップ: 既に登録済み)"
+
+echo "==> Figma MCP を登録..."
+claude mcp add figma \
+  --scope user \
+  --transport http \
+  https://mcp.figma.com/mcp \
+  || echo "  (スキップ: 既に登録済み)"
 
 echo ""
 echo "==> 登録済み MCP サーバー:"

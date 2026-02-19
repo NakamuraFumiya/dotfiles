@@ -1,7 +1,7 @@
 ---
 name: nippo-sessions
 description: Claude Codeの本日のセッション履歴を分析し、日報の作業ログに追記する
-allowed-tools: Bash, Read, Edit, Glob
+allowed-tools: Bash, Read, Edit, Glob, mcp__mcp-atlassian__jira_get_issue
 ---
 
 # Claude Codeセッション履歴 → 日報追記
@@ -59,7 +59,22 @@ for filepath in sys.argv[1:]:
 " $(find ~/.claude/projects -name "*.jsonl" -not -path "*/subagents/*" -mtime 0)
 ```
 
-### 3. セッション内容を分析して要約を作成
+### 3. チケット・PRのタイトルを取得
+
+セッション内容から、Jiraチケット番号（VOC-XXX等）とGitHub PR番号を抽出し、タイトルを取得する。
+
+#### Jiraチケット
+会話中に登場する `VOC-XXX` 等のチケット番号に対して `jira_get_issue` でタイトルを取得する。
+
+#### GitHub PR
+会話中に登場する PR番号に対して以下で取得する:
+```bash
+gh pr view {PR番号} --repo {org/repo} --json title --jq '.title'
+```
+
+リポジトリは会話の文脈から判断する（例: handy-vocプロジェクトなら `handy-inc/handy-voc`）。
+
+### 4. セッション内容を分析して要約を作成
 
 抽出した会話から、以下の観点で作業内容を整理する:
 
@@ -68,21 +83,22 @@ for filepath in sys.argv[1:]:
 - **議論・意思決定**: 技術的な議論や設計判断
 - **学び・気づき**: セッション中に得た知見
 
-### 4. 日報ファイルに追記
+### 5. 日報ファイルに追記
 
-日報の `## 📝 作業ログ` セクションの末尾に、以下の形式で追記する:
+日報の `## 📝 作業ログ` セクションの末尾に、以下の形式で追記する。
+チケット番号・PR番号には必ずタイトルを付記し、後から見返しても内容が分かるようにする。
 
 ```markdown
 ### HH:MM - Claude Codeセッションサマリー
 #### [プロジェクト名]
-- 作業内容の要約
-- 関連PR: URL（あれば）
+- **VOC-XXX「チケットタイトル」**: 作業内容の要約
+- **PR #YYY「PRタイトル」**: 作業内容の要約
 
 #### [プロジェクト名2]
 - 作業内容の要約
 ```
 
-### 5. 注意事項
+### 6. 注意事項
 
 - 既存の作業ログの内容と重複しないようにする
 - セッション中のノイズ（中断、リトライ、コマンド実行など）は除外する

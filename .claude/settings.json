@@ -1,6 +1,16 @@
 {
   "permissions": {
-    "defaultMode": "acceptEdits"
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(go build:*)",
+      "Bash(go vet:*)",
+      "Bash(go test:*)",
+      "Bash(bash -c:*)",
+      "Bash(bash -l -c:*)",
+      "Bash(git -C:*)",
+      "Bash(gh api:*)"
+    ]
   },
   "enabledPlugins": {
     "typescript-lsp@claude-plugins-official": true,

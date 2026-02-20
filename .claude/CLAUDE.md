@@ -1,6 +1,7 @@
 # User Preferences
 
 - PRは常に `--draft` フラグ付きで作成する（`gh pr create --draft`）
+- PR の body 先頭に関連チケットのリンクを見出し付きで記載する（例: `## Ticket\n[PROJ-123](https://example.com/PROJ-123)`）。チケット URL はコンテキストから判断する
 
 # Testing
 

@@ -54,6 +54,13 @@ claude mcp add figma \
   https://mcp.figma.com/mcp \
   || echo "  (スキップ: 既に登録済み)"
 
+echo "==> Notion MCP を登録..."
+claude mcp add notion \
+  --scope user \
+  --transport http \
+  https://mcp.notion.com/mcp \
+  || echo "  (スキップ: 既に登録済み)"
+
 echo ""
 echo "==> 登録済み MCP サーバー:"
 claude mcp list

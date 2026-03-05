@@ -116,5 +116,9 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # curl -fsSL https://claude.ai/install.sh | bash
 #
 # # gh
-#  brew install gh
+# brew install gh
+#
+# # cmux
+# brew tap manaflow-ai/cmux
+# brew install --cask cmux
 

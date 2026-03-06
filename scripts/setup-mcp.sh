@@ -61,6 +61,12 @@ claude mcp add notion \
   https://mcp.notion.com/mcp \
   || echo "  (スキップ: 既に登録済み)"
 
+echo "==> Playwright MCP を登録..."
+claude mcp add playwright \
+  --scope user \
+  -- npx @playwright/mcp@latest \
+  || echo "  (スキップ: 既に登録済み)"
+
 echo ""
 echo "==> 登録済み MCP サーバー:"
 claude mcp list

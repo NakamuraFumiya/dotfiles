@@ -61,6 +61,7 @@ git worktree add <worktree-path> -b <branch-name> origin/main
   > cd <worktree-path> && claude
   > ```
   > そこで実装を進め、完了したら draft PR を作成してください。
+  > PR タイトルには `[リポジトリ名]` をprefixとして付けてください（例: `[handy-voc-front] fix(tags): ...`）。
   > PR 作成後、メインリポジトリに戻って以下で worktree を削除できます：
   > ```
   > git worktree remove <worktree-path>

@@ -1,10 +1,10 @@
 ---
 name: start-ticket
-description: Jira チケットを読み、Kibela で調査し、worktree でブランチを切って実装のたたきを作る
+description: Jira チケットを読み、Kibela で調査し、ブランチを切って実装のたたきを作る
 allowed-tools: Bash
 ---
 
-# チケット開発開始（worktree モード）
+# チケット開発開始
 
 ## 実行指示
 
@@ -44,28 +44,14 @@ Figma リンクがない場合はこのステップをスキップする。
 
 ---
 
-### ステップ 4: worktree 作成
+### ステップ 4: ブランチ作成
 
 - ブランチ名を生成する（形式: `{チケット ID}/{タイトル要約}`、例: `VOC-808/add-login-validation`）
-- リポジトリのルートディレクトリ名を取得する（例: `handy-voc`）
-- worktree パスは `../{リポジトリ名}-{チケット ID}` とする（例: `../handy-voc-VOC-808`）
-- ユーザーに提示して確認後、以下を実行する：
+- `origin/main` を起点に新しいブランチを作成してチェックアウトする：
 
 ```bash
-git worktree add <worktree-path> -b <branch-name> origin/main
+git fetch origin main && git checkout -b <branch-name> origin/main
 ```
-
-- 作成後、ユーザーに以下を案内する：
-  > worktree を作成しました。新しいターミナルで以下を実行してください：
-  > ```
-  > cd <worktree-path> && claude
-  > ```
-  > そこで実装を進め、完了したら draft PR を作成してください。
-  > PR タイトルには `[リポジトリ名]` をprefixとして付けてください（例: `[handy-voc-front] fix(tags): ...`）。チケット番号はタイトルに含めないこと。
-  > PR 作成後、メインリポジトリに戻って以下で worktree を削除できます：
-  > ```
-  > git worktree remove <worktree-path>
-  > ```
 
 ---
 
@@ -92,9 +78,3 @@ git worktree add <worktree-path> -b <branch-name> origin/main
 - （Kibela や仕様から読み取った注意点）
 - ...
 ```
-
----
-
-### 最後に
-
-「worktree で新しい Claude セッションを起動して実装を始めますか？」と聞く。

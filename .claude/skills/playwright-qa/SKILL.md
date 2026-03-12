@@ -173,8 +173,26 @@ ffmpeg -i "$WEBM_FILE" -c:v libx264 -preset fast "$OUTPUT" 2>/dev/null && \
 - 操作が見つからない場合は `browser_evaluate` で DOM を直接調査する
 - ヘッドレスモードでは動画録画できないため、録画時は `headless: false` を使う
 
+## 7. 後処理
+
+動作確認・テスト完了後、以下のクリーンアップを必ず実行する:
+
+1. **スクリーンショットの削除**: 作業中に保存した `.png` / `.jpeg` ファイルを削除
+2. **Playwright ログの削除**: `.playwright-mcp/` ディレクトリを削除
+3. **ブラウザを閉じる**: `browser_close` でブラウザインスタンスを終了
+
+```bash
+# スクリーンショット削除
+rm -f *.png *.jpeg
+
+# Playwright MCP のログ削除
+rm -rf .playwright-mcp/
+```
+
+---
+
 ## 注意事項
 
 - Playwright は独自のブラウザインスタンスを起動する。**絶対にデフォルトブラウザのプロファイルを共有しないこと**
 - 録画スクリプトでは `chromium.launch()` を使い、Arc や Chrome のユーザープロファイルは指定しない
-- テスト完了後は `browser_close` でブラウザを閉じる
+- テスト完了後は必ず「7. 後処理」を実行する

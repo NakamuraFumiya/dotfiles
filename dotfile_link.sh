@@ -122,4 +122,7 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # # cmux
 # brew tap manaflow-ai/cmux
 # brew install --cask cmux
+#
+# # gloud-cli
+# brew install --cask gcloud-cli
 

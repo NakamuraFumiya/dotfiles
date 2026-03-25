@@ -9,6 +9,7 @@ ln -snf ~/dotfiles/.config/alacritty ~/.config
 ln -snf ~/dotfiles/.config/ghostty ~/.config
 ln -snf ~/dotfiles/.config/wezterm ~/.config
 ln -snf ~/dotfiles/.config/gotests ~/.config
+ln -snf ~/dotfiles/.config/starship.toml ~/.config/starship.toml
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 ln -snf ~/dotfiles/.claudeignore ~/.claudeignore

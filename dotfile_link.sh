@@ -125,4 +125,7 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 #
 # # gloud-cli
 # brew install --cask gcloud-cli
-
+#
+# # Claude Code StatusLine
+# npx -y ccstatusline@latest
+#

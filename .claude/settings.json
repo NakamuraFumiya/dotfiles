@@ -18,5 +18,10 @@
   },
   "voiceEnabled": true,
   "skipDangerousModePermissionPrompt": true,
-  "language": "日本語"
+  "language": "日本語",
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  }
 }

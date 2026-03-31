@@ -1,6 +1,6 @@
 ---
 name: branch
-description: Jira チケットからブランチ名を生成して git checkout する
+description: チケット（Linear / Jira）からブランチ名を生成して git checkout する
 allowed-tools: Bash
 ---
 
@@ -8,11 +8,11 @@ allowed-tools: Bash
 
 ## 実行指示
 
-引数で指定されたチケット ID（例: `PROJ-123`）を元に git ブランチを作成してください。
+引数で指定されたチケット ID（例: `VOC-23`）を元に git ブランチを作成してください。
 
 ### 手順
 
-1. **Jira MCP でチケットを取得**してタイトルを確認する
+1. **チケットを取得**してタイトルを確認する（Linear MCP を優先、見つからなければ Jira MCP にフォールバック）
 
 2. **ブランチ名を生成**する
    - 形式: `{チケット ID}/{タイトルの要約}`

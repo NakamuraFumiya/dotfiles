@@ -7,7 +7,7 @@
 
 set -e
 
-required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN)
+required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN LINEAR_API_KEY)
 missing=()
 
 for var in "${required_vars[@]}"; do
@@ -59,6 +59,13 @@ claude mcp add notion \
   --scope user \
   --transport http \
   https://mcp.notion.com/mcp \
+  || echo "  (スキップ: 既に登録済み)"
+
+echo "==> Linear MCP を登録..."
+claude mcp add linear \
+  --scope user \
+  -e LINEAR_API_KEY="$LINEAR_API_KEY" \
+  -- npx -y @hatcloud/linear-mcp \
   || echo "  (スキップ: 既に登録済み)"
 
 echo "==> Playwright MCP を登録..."

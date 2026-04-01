@@ -1,5 +1,5 @@
 #!/bin/bash
-# Claude Code MCP サーバーのセットアップスクリプト
+# Claude Code / Codex 用 MCP サーバーのセットアップスクリプト
 # 新しいマシンでのセットアップ時や、MCP を再設定する際に実行する
 #
 # 実行前に ~/.secrets/claude-mcp.env を作成して source してください:
@@ -27,56 +27,121 @@ if [ ${#missing[@]} -ne 0 ]; then
   exit 1
 fi
 
-echo "==> Atlassian MCP を登録..."
-claude mcp add mcp-atlassian \
-  --scope user \
-  -e JIRA_URL="$JIRA_URL" \
-  -e JIRA_USERNAME="$JIRA_USERNAME" \
-  -e JIRA_API_TOKEN="$JIRA_API_TOKEN" \
-  -- uvx --python 3.13 mcp-atlassian \
-  || echo "  (スキップ: 既に登録済み)"
+setup_claude() {
+  echo "==> Claude Code に MCP を登録..."
 
-echo "==> Kibela MCP を登録..."
-claude mcp add kibela \
-  --scope user \
-  -e KIBELA_ORIGIN="$KIBELA_ORIGIN" \
-  -e KIBELA_ACCESS_TOKEN="$KIBELA_ACCESS_TOKEN" \
-  -- docker run -i \
-    -e KIBELA_ORIGIN \
-    -e KIBELA_ACCESS_TOKEN \
-    ghcr.io/kibela/kibela-mcp-server \
-  || echo "  (スキップ: 既に登録済み)"
+  echo "  - Atlassian"
+  claude mcp add mcp-atlassian \
+    --scope user \
+    -e JIRA_URL="$JIRA_URL" \
+    -e JIRA_USERNAME="$JIRA_USERNAME" \
+    -e JIRA_API_TOKEN="$JIRA_API_TOKEN" \
+    -- uvx --python 3.13 mcp-atlassian \
+    || echo "    (スキップ: 既に登録済み)"
 
-echo "==> Figma MCP を登録..."
-claude mcp add figma \
-  --scope user \
-  --transport http \
-  https://mcp.figma.com/mcp \
-  || echo "  (スキップ: 既に登録済み)"
+  echo "  - Kibela"
+  claude mcp add kibela \
+    --scope user \
+    -e KIBELA_ORIGIN="$KIBELA_ORIGIN" \
+    -e KIBELA_ACCESS_TOKEN="$KIBELA_ACCESS_TOKEN" \
+    -- docker run -i \
+      -e KIBELA_ORIGIN \
+      -e KIBELA_ACCESS_TOKEN \
+      ghcr.io/kibela/kibela-mcp-server \
+    || echo "    (スキップ: 既に登録済み)"
 
-echo "==> Notion MCP を登録..."
-claude mcp add notion \
-  --scope user \
-  --transport http \
-  https://mcp.notion.com/mcp \
-  || echo "  (スキップ: 既に登録済み)"
+  echo "  - Figma"
+  claude mcp add figma \
+    --scope user \
+    --transport http \
+    https://mcp.figma.com/mcp \
+    || echo "    (スキップ: 既に登録済み)"
 
-echo "==> Linear MCP を登録..."
-claude mcp add linear \
-  --scope user \
-  -e LINEAR_API_KEY="$LINEAR_API_KEY" \
-  -- npx -y @hatcloud/linear-mcp \
-  || echo "  (スキップ: 既に登録済み)"
+  echo "  - Notion"
+  claude mcp add notion \
+    --scope user \
+    --transport http \
+    https://mcp.notion.com/mcp \
+    || echo "    (スキップ: 既に登録済み)"
 
-echo "==> Playwright MCP を登録..."
-claude mcp add playwright \
-  --scope user \
-  -- npx @playwright/mcp@latest \
-  || echo "  (スキップ: 既に登録済み)"
+  echo "  - Linear"
+  claude mcp add linear \
+    --scope user \
+    -e LINEAR_API_KEY="$LINEAR_API_KEY" \
+    -- npx -y @hatcloud/linear-mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Playwright"
+  claude mcp add playwright \
+    --scope user \
+    -- npx @playwright/mcp@latest \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo ""
+  echo "==> Claude Code の登録済み MCP サーバー:"
+  claude mcp list
+}
+
+setup_codex() {
+  echo "==> Codex に MCP を登録..."
+
+  echo "  - Atlassian"
+  codex mcp add mcp-atlassian \
+    --env JIRA_URL="$JIRA_URL" \
+    --env JIRA_USERNAME="$JIRA_USERNAME" \
+    --env JIRA_API_TOKEN="$JIRA_API_TOKEN" \
+    -- uvx --python 3.13 mcp-atlassian \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Kibela"
+  codex mcp add kibela \
+    --env KIBELA_ORIGIN="$KIBELA_ORIGIN" \
+    --env KIBELA_ACCESS_TOKEN="$KIBELA_ACCESS_TOKEN" \
+    -- docker run -i \
+      -e KIBELA_ORIGIN \
+      -e KIBELA_ACCESS_TOKEN \
+      ghcr.io/kibela/kibela-mcp-server \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Figma"
+  codex mcp add figma \
+    --url https://mcp.figma.com/mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Notion"
+  codex mcp add notion \
+    --url https://mcp.notion.com/mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Linear"
+  codex mcp add linear \
+    --env LINEAR_API_KEY="$LINEAR_API_KEY" \
+    -- npx -y @hatcloud/linear-mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Playwright"
+  codex mcp add playwright \
+    -- npx @playwright/mcp@latest \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo ""
+  echo "==> Codex の登録済み MCP サーバー:"
+  codex mcp list
+}
+
+if command -v claude >/dev/null 2>&1; then
+  setup_claude
+else
+  echo "==> Claude Code は見つからないためスキップします"
+fi
 
 echo ""
-echo "==> 登録済み MCP サーバー:"
-claude mcp list
+
+if command -v codex >/dev/null 2>&1; then
+  setup_codex
+else
+  echo "==> Codex は見つからないためスキップします"
+fi
 
 echo ""
-echo "完了! Claude Code を再起動してください。"
+echo "完了! Claude Code / Codex を再起動してください。"

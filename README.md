@@ -15,10 +15,11 @@ bash dotfile_link.sh
 - typescript-language-server
 - vtsls
 
-## Claude Code MCP
+## Claude Code / Codex MCP
 
 ### Prerequisites
 - [Claude Code](https://claude.ai/claude-code) installed
+- [Codex CLI](https://developers.openai.com/codex/cli/) installed
 - Docker running (required for Kibela MCP)
 
 ### Setup
@@ -40,11 +41,19 @@ Fill in `~/.secrets/claude-mcp.env`:
 | `JIRA_API_TOKEN` | Jira API token | https://id.atlassian.com/manage-profile/security/api-tokens |
 | `KIBELA_ORIGIN` | `https://your-subdomain.kibe.la` | - |
 | `KIBELA_ACCESS_TOKEN` | Kibela access token | `https://your-subdomain.kibe.la/settings/access_tokens` |
+| `LINEAR_API_KEY` | Linear Personal API Key | `https://linear.app/settings/api` |
 
-**2. Register MCP servers** (exit Claude Code first)
+**2. Register MCP servers** (exit Claude Code / Codex first)
 
 ```bash
 source ~/.secrets/claude-mcp.env && bash scripts/setup-mcp.sh
 ```
 
-**3. Restart Claude Code**
+This script registers the same MCP servers to both Claude Code and Codex when each CLI is installed.
+
+**3. Restart Claude Code / Codex**
+
+### Notes
+
+- `figma` and `notion` are registered as HTTP MCP servers in Codex. If the server requires OAuth, run `codex mcp login <server-name>` afterwards.
+- Codex stores MCP settings in `~/.codex/config.toml`.

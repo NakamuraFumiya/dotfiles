@@ -130,3 +130,6 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # # Claude Code StatusLine
 # npx -y ccstatusline@latest
 #
+# # Codex
+# brew install codex
+

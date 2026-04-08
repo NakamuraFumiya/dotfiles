@@ -94,6 +94,9 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # # kubernetes
 # brew install kubernetes-cli
 #
+# # minikube
+# brew install minikube
+#
 # # grpcurl
 # brew install grpcurl
 #

@@ -112,7 +112,7 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # brew install tree
 #
 # # terraform
-# brew install terraform
+# brew install hashicorp/tap/terraform
 #
 # # tsc
 # brew install tsc

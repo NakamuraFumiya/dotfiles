@@ -160,6 +160,9 @@ alias tf="terraform"
 # nippo
 alias npa="$HOME/dotfiles/scripts/nippo-go/nippo"
 
+# k9s
+alias k9s='k9s --readonly'
+
 # ==========================================
 # Claude Code エイリアス
 # ==========================================

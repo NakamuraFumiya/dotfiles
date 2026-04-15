@@ -2,12 +2,12 @@
 # Claude Code / Codex 用 MCP サーバーのセットアップスクリプト
 # 新しいマシンでのセットアップ時や、MCP を再設定する際に実行する
 #
-# 実行前に ~/.secrets/claude-mcp.env を作成して source してください:
-#   source ~/.secrets/claude-mcp.env && bash scripts/setup-mcp.sh
+# 実行前に ~/.secrets/mcp.env を作成して source してください:
+#   source ~/.secrets/mcp.env && bash scripts/setup-mcp.sh
 
 set -e
 
-required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN LINEAR_API_KEY)
+required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN LINEAR_API_KEY GITHUB_PERSONAL_ACCESS_TOKEN)
 missing=()
 
 for var in "${required_vars[@]}"; do
@@ -22,8 +22,8 @@ if [ ${#missing[@]} -ne 0 ]; then
     echo "  - $var"
   done
   echo ""
-  echo "~/.secrets/claude-mcp.env を作成して source してください"
-  echo "  cp ~/dotfiles/templates/claude-mcp.env.example ~/.secrets/claude-mcp.env"
+  echo "~/.secrets/mcp.env を作成して source してください"
+  echo "  cp ~/dotfiles/templates/mcp.env.example ~/.secrets/mcp.env"
   exit 1
 fi
 
@@ -69,6 +69,15 @@ setup_claude() {
     --scope user \
     -e LINEAR_API_KEY="$LINEAR_API_KEY" \
     -- npx -y @hatcloud/linear-mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - GitHub"
+  claude mcp add github \
+    --scope user \
+    -e GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_PERSONAL_ACCESS_TOKEN" \
+    -- docker run -i --rm \
+      -e GITHUB_PERSONAL_ACCESS_TOKEN \
+      ghcr.io/github/github-mcp-server \
     || echo "    (スキップ: 既に登録済み)"
 
   echo "  - Playwright"
@@ -117,6 +126,14 @@ setup_codex() {
   codex mcp add linear \
     --env LINEAR_API_KEY="$LINEAR_API_KEY" \
     -- npx -y @hatcloud/linear-mcp \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - GitHub"
+  codex mcp add github \
+    --env GITHUB_PERSONAL_ACCESS_TOKEN="$GITHUB_PERSONAL_ACCESS_TOKEN" \
+    -- docker run -i --rm \
+      -e GITHUB_PERSONAL_ACCESS_TOKEN \
+      ghcr.io/github/github-mcp-server \
     || echo "    (スキップ: 既に登録済み)"
 
   echo "  - Playwright"

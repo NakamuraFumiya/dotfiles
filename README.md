@@ -20,7 +20,7 @@ bash dotfile_link.sh
 ### Prerequisites
 - [Claude Code](https://claude.ai/claude-code) installed
 - [Codex CLI](https://developers.openai.com/codex/cli/) installed
-- Docker running (required for Kibela MCP)
+- Docker running (required for Kibela and GitHub MCP)
 
 ### Setup
 
@@ -28,11 +28,11 @@ bash dotfile_link.sh
 
 ```bash
 mkdir -p ~/.secrets
-cp templates/claude-mcp.env.example ~/.secrets/claude-mcp.env
-chmod 600 ~/.secrets/claude-mcp.env
+cp templates/mcp.env.example ~/.secrets/mcp.env
+chmod 600 ~/.secrets/mcp.env
 ```
 
-Fill in `~/.secrets/claude-mcp.env`:
+Fill in `~/.secrets/mcp.env`:
 
 | Variable | Value | Token |
 |---|---|---|
@@ -42,11 +42,12 @@ Fill in `~/.secrets/claude-mcp.env`:
 | `KIBELA_ORIGIN` | `https://your-subdomain.kibe.la` | - |
 | `KIBELA_ACCESS_TOKEN` | Kibela access token | `https://your-subdomain.kibe.la/settings/access_tokens` |
 | `LINEAR_API_KEY` | Linear Personal API Key | `https://linear.app/settings/api` |
+| `GITHUB_PERSONAL_ACCESS_TOKEN` | GitHub Personal Access Token | `https://github.com/settings/personal-access-tokens` |
 
 **2. Register MCP servers** (exit Claude Code / Codex first)
 
 ```bash
-source ~/.secrets/claude-mcp.env && bash scripts/setup-mcp.sh
+source ~/.secrets/mcp.env && bash scripts/setup-mcp.sh
 ```
 
 This script registers the same MCP servers to both Claude Code and Codex when each CLI is installed.

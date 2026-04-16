@@ -114,6 +114,9 @@ ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
 # # terraform
 # brew install hashicorp/tap/terraform
 #
+# # aqua (プロジェクトごとのCLIバージョン管理)
+# brew install aquaproj/aqua/aqua
+#
 # # tsc
 # brew install tsc
 #

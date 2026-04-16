@@ -163,6 +163,9 @@ alias npa="$HOME/dotfiles/scripts/nippo-go/nippo"
 # k9s
 alias k9s='k9s --readonly'
 
+# aqua (CLI Manager)
+export PATH="${AQUA_ROOT_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/aquaproj-aqua}/bin:$PATH"
+
 # ==========================================
 # Claude Code エイリアス
 # ==========================================

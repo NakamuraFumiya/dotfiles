@@ -5,6 +5,10 @@
 - PR レビューコメントへの返信には対応コミットハッシュのリンクを含める（例: `[537c3c7e](https://github.com/{owner}/{repo}/commit/537c3c7e) で対応しました。`）。owner/repo は対象リポジトリから判断する
 - worktree 作成時は必ず `origin/main` を起点にする（`git worktree add <path> -b <branch> origin/main`）
 
+# Design
+
+- 仕様に根拠のない制約を実装に入れない
+
 # Code Style
 
 - 1回しか使わない値を中間変数に入れない。関数の引数に直接渡す

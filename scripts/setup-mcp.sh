@@ -23,7 +23,7 @@ if [ ${#missing[@]} -ne 0 ]; then
   done
   echo ""
   echo "~/.secrets/mcp.env を作成して source してください"
-  echo "  cp ~/dotfiles/templates/mcp.env.example ~/.secrets/mcp.env"
+  echo "  cp ~/dotfiles/mcp.env.example ~/.secrets/mcp.env"
   exit 1
 fi
 

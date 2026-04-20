@@ -28,7 +28,7 @@ bash dotfile_link.sh
 
 ```bash
 mkdir -p ~/.secrets
-cp templates/mcp.env.example ~/.secrets/mcp.env
+cp mcp.env.example ~/.secrets/mcp.env
 chmod 600 ~/.secrets/mcp.env
 ```
 

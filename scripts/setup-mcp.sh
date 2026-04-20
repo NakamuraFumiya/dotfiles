@@ -7,7 +7,7 @@
 
 set -e
 
-required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN LINEAR_API_KEY GITHUB_PERSONAL_ACCESS_TOKEN)
+required_vars=(JIRA_URL JIRA_USERNAME JIRA_API_TOKEN KIBELA_ORIGIN KIBELA_ACCESS_TOKEN LINEAR_API_KEY GITHUB_PERSONAL_ACCESS_TOKEN METABASE_URL METABASE_USERNAME METABASE_PASSWORD)
 missing=()
 
 for var in "${required_vars[@]}"; do
@@ -86,6 +86,15 @@ setup_claude() {
     -- npx @playwright/mcp@latest \
     || echo "    (スキップ: 既に登録済み)"
 
+  echo "  - Metabase"
+  claude mcp add metabase \
+    --scope user \
+    -e METABASE_URL="$METABASE_URL" \
+    -e METABASE_USERNAME="$METABASE_USERNAME" \
+    -e METABASE_PASSWORD="$METABASE_PASSWORD" \
+    -- npx -y @cognitionai/metabase-mcp-server --read \
+    || echo "    (スキップ: 既に登録済み)"
+
   echo ""
   echo "==> Claude Code の登録済み MCP サーバー:"
   claude mcp list
@@ -139,6 +148,14 @@ setup_codex() {
   echo "  - Playwright"
   codex mcp add playwright \
     -- npx @playwright/mcp@latest \
+    || echo "    (スキップ: 既に登録済み)"
+
+  echo "  - Metabase"
+  codex mcp add metabase \
+    --env METABASE_URL="$METABASE_URL" \
+    --env METABASE_USERNAME="$METABASE_USERNAME" \
+    --env METABASE_PASSWORD="$METABASE_PASSWORD" \
+    -- npx -y @cognitionai/metabase-mcp-server --read \
     || echo "    (スキップ: 既に登録済み)"
 
   echo ""

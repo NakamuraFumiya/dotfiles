@@ -32,3 +32,4 @@
 
 - Repository は集約（Aggregate）を常に完全な状態で返すこと。パフォーマンスのために部分取得が必要な場合は QueryService パターンを使う
 - エラーは発生場所でアプリケーションエラー（`errors.NewError`）にラップする。呼び出し元でのラップ忘れを防ぐため、ヘルパー関数・mapper 等でも標準エラーをそのまま返さない
+- repository の書き込みメソッド（Update / BatchCreate 等）を呼ぶときは、その実装が複数 SQL 文（複数テーブル UPDATE / Delete-Insert / 子集約の同期など）を発行するか確認する。発行する場合は controller 層で `tx.DoInTransaction` で囲む。途中失敗時の整合性を担保するため

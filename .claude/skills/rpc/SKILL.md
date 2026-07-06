@@ -56,7 +56,7 @@ curl -s --location 'HOST/PACKAGE.SERVICE/METHOD' \
 ```
 
 - Connect RPC の URL 形式: `{host}/{package}.{service}/{method}`
-- package 名はドット区切り（例: `handyvoc.school_staff.v1`）
+- package 名はドット区切り（例: `myapp.user.v1`）
 
 ### 6. レスポンスの表示
 

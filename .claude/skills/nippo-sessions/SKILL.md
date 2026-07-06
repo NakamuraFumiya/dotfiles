@@ -72,7 +72,7 @@ for filepath in sys.argv[1:]:
 gh pr view {PR番号} --repo {org/repo} --json title --jq '.title'
 ```
 
-リポジトリは会話の文脈から判断する（例: handy-vocプロジェクトなら `handy-inc/handy-voc`）。
+リポジトリは会話の文脈から判断する（例: `owner/repo`）。
 
 ### 4. セッション内容を分析して要約を作成
 

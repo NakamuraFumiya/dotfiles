@@ -41,5 +41,5 @@ blur = true
 [keyboard]
 bindings = [
   { key = "Enter", mods = "Alt", action = "ToggleSimpleFullscreen" }, # フルスクリーン切替（Spaceを作らないので透過が効く）
-  { key = "Enter", mods = "Command", chars = "\u001b\r" },            # ESC+CRを送る。Claude Code等で改行挿入になる
+  { key = "Enter", mods = "Shift", chars = "\u001b\r" },            # ESC+CRを送る。Claude Code等で改行挿入になる
 ]

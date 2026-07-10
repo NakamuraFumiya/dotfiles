@@ -1,0 +1,4 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+a" # デフォルトは ctrl+b。tmux と揃えている（ネストして使うと外側が prefix を奪うので注意）

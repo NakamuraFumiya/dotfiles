@@ -10,6 +10,9 @@ ln -snf ~/dotfiles/.config/ghostty ~/.config
 ln -snf ~/dotfiles/.config/wezterm ~/.config
 ln -snf ~/dotfiles/.config/gotests ~/.config
 ln -snf ~/dotfiles/.config/starship.toml ~/.config/starship.toml
+# herdr はランタイムファイル（ログ・ソケット等）が同居するため config.toml のみ symlink する
+mkdir -p ~/.config/herdr
+ln -snf ~/dotfiles/.config/herdr/config.toml ~/.config/herdr/config.toml
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 ln -snf ~/dotfiles/.claudeignore ~/.claudeignore

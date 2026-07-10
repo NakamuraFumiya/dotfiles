@@ -1,7 +1,6 @@
 
 [env]
 TERM = "xterm-256color"
-opacity = "0.6"
 
 [font]
 size = 13.0
@@ -34,13 +33,13 @@ y = 4
 import = ["/Users/fumiyanakamura/.config/alacritty/catppuccin_theme/catppuccin-latte.toml"]
 
 [window]
-opacity = 0.8
+opacity = 0.5
 blur = true
 # decorations = "none"         # ウィンドウの枠（バーなど）を消す
 # startup_mode = "Maximized"   # 起動時に最大化（完全な全画面化ではない）
 
 [keyboard]
 bindings = [
-  { key = "Enter", mods = "Alt", action = "ToggleFullscreen" }, # フルスクリーン切替
+  { key = "Enter", mods = "Alt", action = "ToggleSimpleFullscreen" }, # フルスクリーン切替（Spaceを作らないので透過が効く）
 ]
 

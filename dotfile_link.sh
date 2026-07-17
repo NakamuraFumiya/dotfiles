@@ -10,9 +10,8 @@ ln -snf ~/dotfiles/.config/ghostty ~/.config
 ln -snf ~/dotfiles/.config/wezterm ~/.config
 ln -snf ~/dotfiles/.config/gotests ~/.config
 ln -snf ~/dotfiles/.config/starship.toml ~/.config/starship.toml
-# herdr はランタイムファイル（ログ・ソケット等）が同居するため config.toml のみ symlink する
-mkdir -p ~/.config/herdr
-ln -snf ~/dotfiles/.config/herdr/config.toml ~/.config/herdr/config.toml
+# herdr 関連（本体設定 + セッション監視→ntfy 通知）は herdr/ 配下で自己完結管理
+bash ~/dotfiles/herdr/setup.sh
 ln -snf ~/dotfiles/.config/.ideavimrc ~/
 ln -snf ~/dotfiles/.config/.vimrc ~/
 ln -snf ~/dotfiles/.claudeignore ~/.claudeignore

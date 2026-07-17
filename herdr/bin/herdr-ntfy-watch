@@ -1,0 +1,119 @@
+#!/usr/bin/env python3
+"""Herdr の全エージェントを監視し、状態遷移をスマホ（ntfy）へプッシュする。
+
+`herdr agent list` を定期ポーリングして差分検知する方式。Socket API の
+events.subscribe は使わない（herdr の protocol 更新に CLI 経由の方が追従しやすいため）。
+
+通知条件:
+  - 任意の状態 → blocked   : 入力待ち（権限確認など）。優先度 high
+  - working → idle / done  : ターン完了
+
+usage:
+  herdr-ntfy-watch          # 監視ループ開始（フォアグラウンド。常駐は launchd で）
+  herdr-ntfy-watch --once   # 1回だけ取得して現在の状態を表示（通知しない）
+  herdr-ntfy-watch --test   # テスト通知を1件送って終了
+"""
+
+import json
+import os
+import subprocess
+import sys
+import time
+import urllib.request
+
+NTFY_SERVER = os.environ.get("HERDR_NTFY_SERVER", "https://ntfy.sh")
+TOPIC_FILE = os.path.expanduser("~/.config/herdr-ntfy-watch/topic")
+POLL_SEC = float(os.environ.get("HERDR_NTFY_POLL_SEC", "5"))
+RETRY_SEC = 15
+
+
+def load_topic() -> str:
+    topic = os.environ.get("HERDR_NTFY_TOPIC", "")
+    if not topic and os.path.exists(TOPIC_FILE):
+        with open(TOPIC_FILE) as f:
+            topic = f.read().strip()
+    if not topic:
+        sys.exit(f"ntfy topic が未設定です。{TOPIC_FILE} に書くか HERDR_NTFY_TOPIC を設定してください")
+    return topic
+
+
+def notify(topic: str, title: str, message: str, priority: int, tags: list[str]) -> None:
+    payload = json.dumps({
+        "topic": topic,
+        "title": title,
+        "message": message,
+        "priority": priority,
+        "tags": tags,
+    }).encode()
+    req = urllib.request.Request(NTFY_SERVER, data=payload)
+    try:
+        urllib.request.urlopen(req, timeout=10).read()
+    except OSError as e:
+        print(f"ntfy 送信失敗: {e}", file=sys.stderr)
+
+
+def list_agents() -> list[dict] | None:
+    """herdr server が落ちている等で取得できないときは None。"""
+    try:
+        out = subprocess.run(
+            ["herdr", "agent", "list"],
+            capture_output=True, text=True, timeout=10,
+        )
+        if out.returncode != 0:
+            return None
+        return json.loads(out.stdout)["result"]["agents"]
+    except (OSError, subprocess.TimeoutExpired, ValueError, KeyError):
+        return None
+
+
+def label(a: dict) -> str:
+    name = a.get("name") or a.get("agent", "agent")
+    cwd = os.path.basename(a.get("cwd", "")) or "?"
+    return f"{name} [{a.get('pane_id', '?')}] {cwd}"
+
+
+def watch(topic: str) -> None:
+    prev: dict[str, dict] | None = None  # None = ベースライン未取得
+    while True:
+        agents = list_agents()
+        if agents is None:
+            # サーバー再起動をまたいだ古い遷移で通知しないよう、ベースラインを捨てる
+            prev = None
+            time.sleep(RETRY_SEC)
+            continue
+
+        cur = {a["terminal_id"]: a for a in agents}
+        if prev is not None:
+            for tid, a in cur.items():
+                old = prev.get(tid)
+                if old is None:
+                    continue
+                was, now = old.get("agent_status"), a.get("agent_status")
+                if now == was:
+                    continue
+                if now == "blocked":
+                    notify(topic, "Herdr: 入力待ち", f"{label(a)}\n{was} → {now}", 4, ["pause_button"])
+                elif was == "working" and now in ("idle", "done"):
+                    notify(topic, "Herdr: 完了", f"{label(a)}\n{was} → {now}", 3, ["white_check_mark"])
+        prev = cur
+        time.sleep(POLL_SEC)
+
+
+def main() -> None:
+    if "--once" in sys.argv:
+        agents = list_agents()
+        if agents is None:
+            sys.exit("herdr agent list を取得できません（server 起動中か確認してください）")
+        for a in agents:
+            print(f"{a.get('agent_status', '?'):8} {label(a)}")
+        return
+    topic = load_topic()
+    if "--test" in sys.argv:
+        notify(topic, "Herdr: テスト", "herdr-ntfy-watch からのテスト通知です", 3, ["bell"])
+        print(f"テスト通知を送信しました → {NTFY_SERVER}/{topic}")
+        return
+    watch(topic)
+
+
+if __name__ == "__main__":
+    main()

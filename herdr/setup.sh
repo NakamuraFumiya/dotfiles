@@ -26,6 +26,10 @@ mkdir -p ~/Library/LaunchAgents
 sed "s|__HOME__|$HOME|g" "$DIR/launchd/dev.herdr.ntfy-watch.plist.template" \
   > ~/Library/LaunchAgents/dev.herdr.ntfy-watch.plist
 launchctl bootout "gui/$(id -u)/dev.herdr.ntfy-watch" 2>/dev/null || true
-launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/dev.herdr.ntfy-watch.plist
+# GUI セッション外（SSH 越しの初回セットアップ等）では bootstrap できないが、
+# RunAtLoad があるので次回 GUI ログイン時に自動起動する。ここでは中断させない
+if ! launchctl bootstrap "gui/$(id -u)" ~/Library/LaunchAgents/dev.herdr.ntfy-watch.plist; then
+  echo "warn: LaunchAgent の起動に失敗（GUI セッション外?）。次回ログイン時に自動起動します" >&2
+fi
 
 echo "herdr setup done（手動ステップは $DIR/README.md 参照）"

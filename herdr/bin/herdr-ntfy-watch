@@ -14,6 +14,10 @@ usage:
   herdr-ntfy-watch --test   # テスト通知を1件送って終了
 """
 
+# macOS 同梱の python3 (3.9) では PEP 604 の `X | None` が def 時に評価されて
+# クラッシュするため、注釈を文字列扱いにして新 PC の初回セットアップでも動くようにする
+from __future__ import annotations
+
 import json
 import os
 import subprocess

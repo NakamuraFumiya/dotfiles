@@ -29,7 +29,11 @@ allowed-tools: Bash
    cd ~/nippo && git add -A && git commit -m "日報: YYYY-MM-DD" && git push
    ```
 
-   複数日分をまとめる場合は `"日報: YYYY-MM-DD〜YYYY-MM-DD"` とする
+   - 複数日分をまとめる場合は `"日報: YYYY-MM-DD〜YYYY-MM-DD"`
+   - **同じ日を再度 push する場合**（既にその日のコミットがある。
+     `git log --oneline --grep "日報: YYYY-MM-DD"` で確認）は
+     `"日報: YYYY-MM-DD (更新)"` とする。1 日に何度実行しても、
+     どれが後から足したぶんか履歴で見分けられるようにする
 
 5. 完了後、コミットしたファイル一覧とコミットハッシュを通知する
 

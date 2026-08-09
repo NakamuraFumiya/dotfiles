@@ -6,7 +6,7 @@ local function get_nippo_path()
   local date = os.date("%Y-%m-%d")
   local year = os.date("%Y")
   local month = os.date("%m")
-  return vim.fn.expand("~/dotfiles/nippos/" .. year .. "/" .. month .. "/nippo." .. date .. ".md")
+  return vim.fn.expand("~/nippo/" .. year .. "/" .. month .. "/nippo." .. date .. ".md")
 end
 
 -- 日報完成プロンプトを読み込み

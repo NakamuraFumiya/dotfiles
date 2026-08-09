@@ -1,17 +1,23 @@
 ---
 name: nippo
 description: 本日の日報を分析し、未完成のセクションを自動補完して完成させる
-allowed-tools: Read, Edit, Glob, Bash, mcp__mcp-atlassian__jira_get_issue
+allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-atlassian__jira_get_issue
 ---
 
 # 日報完成プロンプト
 
 ## 分析対象ファイル
-`$HOME/dotfiles/nippos/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
+`$HOME/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
+
+ここはリモート追跡ありの private リポジトリ（`github.com/NakamuraFumiya/nippo`）。
+このスキルは push しない。push は `/nippo-push` で行う。
 
 ## 実行指示
 
 ### 1. 現在の日報ファイルを読み込んで分析してください
+
+ファイルが存在しない場合は、その日の作業実績（git ログ・PR・チケット・セッション履歴）を
+集めて新規作成する。直近の日報ファイルを読んで書式を揃える。
 
 ### 2. 各セクションの状況を確認
 - **📝 作業ログ**: 本日の全活動を時系列で確認
@@ -67,7 +73,8 @@ allowed-tools: Read, Edit, Glob, Bash, mcp__mcp-atlassian__jira_get_issue
 - 過度に楽観的にならず、現実的な評価を行うこと
 - 明日のスケジュールや優先度を考慮した申し送りにすること
 - 学びや気づきは具体的で実用的な内容にすること
-- **Jiraチケット番号（VOC-XXX等）やGitHub PR番号が登場する場合、必ずタイトルを付記する**
-  - Jiraチケット: `jira_get_issue` でタイトルを取得し `VOC-XXX「タイトル」` の形式で記載
+- **チケット番号（VOC-XXX等）やGitHub PR番号が登場する場合、必ずタイトルを付記する**
+  - チケット: Linear MCP の `get_issue` でタイトルを取得し `VOC-XXX「タイトル」` の形式で記載する。
+    Linear で見つからない場合のみ Jira MCP の `jira_get_issue` にフォールバックする
   - GitHub PR: `gh pr view {番号} --repo {org/repo} --json title --jq '.title'` でタイトルを取得し `PR #YYY「タイトル」` の形式で記載
   - 番号だけでは後から見返したときに内容が分からないため、全セクションで徹底する

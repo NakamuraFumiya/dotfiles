@@ -124,10 +124,11 @@ dotfiles/
 │       ├── nippo              # Goバイナリ（メイン）
 │       ├── go.mod             # Go modules
 │       └── NIPPO_FINALIZE_AI.md # AI完成プロンプト
-├── nippos/                    # 日報ファイル保存場所
-│   ├── nippo.2026-01-15.md
-│   └── nippo.2026-01-16.md
 └── README.md                  # プロジェクト概要
+
+~/nippo/                       # 日報ファイル保存場所（別リポジトリ）
+├── 2026/01/nippo.2026-01-15.md
+└── 2026/01/nippo.2026-01-16.md
 ```
 
 ## 📅 生成される日報の構造
@@ -180,7 +181,7 @@ $HOME/dotfiles/scripts/nippo-go/nippo "テスト"
 ### ファイルが作成されない場合
 ```bash
 # ディレクトリの確認
-ls ~/dotfiles/nippos/
+ls ~/nippo/
 
 # 権限の確認
 ls -la ~/dotfiles/scripts/nippo-go/nippo

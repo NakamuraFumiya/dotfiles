@@ -1,7 +1,7 @@
 ---
 name: nippo-sessions
 description: Claude Codeの本日のセッション履歴を分析し、日報の作業ログに追記する
-allowed-tools: Bash, Read, Edit, Glob, mcp__mcp-atlassian__jira_get_issue
+allowed-tools: Bash, Read, Edit, Glob, mcp__linear__get_issue, mcp__mcp-atlassian__jira_get_issue
 ---
 
 # Claude Codeセッション履歴 → 日報追記
@@ -11,7 +11,7 @@ allowed-tools: Bash, Read, Edit, Glob, mcp__mcp-atlassian__jira_get_issue
 
 ## 対象ファイル
 - セッション履歴: `~/.claude/projects/*/` 配下の本日更新された `.jsonl` ファイル（subagents配下は除外）
-- 日報ファイル: `$HOME/dotfiles/nippos/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
+- 日報ファイル: `$HOME/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
 
 ## 実行手順
 
@@ -61,10 +61,11 @@ for filepath in sys.argv[1:]:
 
 ### 3. チケット・PRのタイトルを取得
 
-セッション内容から、Jiraチケット番号（VOC-XXX等）とGitHub PR番号を抽出し、タイトルを取得する。
+セッション内容から、チケット番号（VOC-XXX等）とGitHub PR番号を抽出し、タイトルを取得する。
 
-#### Jiraチケット
-会話中に登場する `VOC-XXX` 等のチケット番号に対して `jira_get_issue` でタイトルを取得する。
+#### チケット
+会話中に登場する `VOC-XXX` 等のチケット番号に対して Linear MCP の `get_issue` でタイトルを取得する。
+Linear で見つからない場合のみ Jira MCP の `jira_get_issue` にフォールバックする。
 
 #### GitHub PR
 会話中に登場する PR番号に対して以下で取得する:

@@ -1,10 +1,10 @@
 # 日報完成AIプロンプト
 
 ## 目的
-本日の日報（`/nippos/nippo.$(date +%Y-%m-%d).md`）を分析し、未完成のセクションを自動補完して完成させる。
+本日の日報（`$HOME/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`）を分析し、未完成のセクションを自動補完して完成させる。
 
 ## 分析対象ファイル
-`$HOME/dotfiles/nippos/nippo.$(date +%Y-%m-%d).md`
+`$HOME/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md`
 
 ## 実行指示
 
@@ -68,7 +68,7 @@
 ## 実行コマンド例
 ```bash
 # 現在の日報を確認
-cat nippos/nippo.$(date +%Y-%m-%d).md
+cat ~/nippo/$(date +%Y)/$(date +%m)/nippo.$(date +%Y-%m-%d).md
 
 # このプロンプトでAIに日報完成を依頼
 ```

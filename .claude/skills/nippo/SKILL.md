@@ -1,6 +1,6 @@
 ---
 name: nippo
-description: 本日の日報を分析し、未完成のセクションを自動補完して完成させる
+description: 本日の作業実績（コミット・PR・チケット・Claude Code のセッション履歴）を集めて日報を作成・最新化する。1日に何度実行してもよい。
 allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-atlassian__jira_get_issue
 ---
 
@@ -14,19 +14,74 @@ allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-a
 
 ## 実行指示
 
-### 1. 現在の日報ファイルを読み込んで分析してください
+### 1. 現在の日報ファイルを読み込む
 
-ファイルが存在しない場合は、その日の作業実績（git ログ・PR・チケット・セッション履歴）を
-集めて新規作成する。直近の日報ファイルを読んで書式を揃える。
+ファイルが存在しない場合は、手順 2 で集めた内容から新規作成する。
+直近の日報ファイルを読んで書式を揃える。
 
-### 2. 各セクションの状況を確認
+### 2. 本日の作業実績を集める
+
+**ファイルの有無にかかわらず毎回行う。** ファイルに既に書かれている作業ログは
+`nippo` コマンドや手書きで入れた分しかなく、それだけでは実態を取りこぼす。
+
+#### A. コミット・PR・チケット
+
+- 本日のコミット（作業中のリポジトリと worktree を対象に `git log --since`）
+- 本日触った PR の状態（`gh pr view` / `gh pr list`）
+- 関連チケット（Linear MCP の `get_issue`。見つからなければ Jira MCP の `jira_get_issue`）
+
+#### B. Claude Code のセッション履歴
+
+コミットに残らない作業（調査・原因究明・設計判断・レビュー対応・採用しなかった案）は
+ここにしか残らない。**学びと気づきの主な供給源になるので必ず読む。**
+
+```bash
+python3 -c "
+import sys, json
+
+for filepath in sys.argv[1:]:
+    project = filepath.split('projects/')[1].split('/')[0]
+    project = project.replace('-Users-fumiyanakamura-', '').replace('-Users-fumiyanakamura', '(home)')
+    messages = []
+    with open(filepath) as f:
+        for line in f:
+            d = json.loads(line)
+            if d.get('type') != 'user':
+                continue
+            content = d.get('message', {}).get('content', '') if isinstance(d.get('message'), dict) else ''
+            texts = [content] if isinstance(content, str) else [
+                c.get('text', '') for c in content if isinstance(c, dict) and c.get('type') == 'text']
+            for text in texts:
+                text = text.strip()
+                if len(text) > 5 and not text.startswith(('<command-', '<local-command')):
+                    messages.append(text[:200])
+    if messages:
+        print(f'=== Project: {project} ===')
+        for m in messages:
+            print(f'  - {m}')
+        print()
+" $(find ~/.claude/projects -name "*.jsonl" -not -path "*/subagents/*" -mtime 0)
+```
+
+会話の流れから作業の文脈を読み取り、発言の羅列ではなく意味のある要約にする。
+中断・リトライ・コマンド実行などのノイズは除く。
+
+**セッション履歴には認証情報・実データ・同僚の氏名がそのまま残っていることがある。**
+日報へ写す段で必ず落とす（手順 7 を参照）。
+
+#### C. 作業ログへの反映
+
+集めた内容のうち、既存の作業ログに無いものを時系列で追記する。
+既にある記述と重複させない。手で書かれた記述は上書きしない。
+
+### 3. 各セクションの状況を確認
 - **📝 作業ログ**: 本日の全活動を時系列で確認
 - **🎯 今日の目標**: 設定された目標と達成状況
 - **📊 進捗状況**: 空欄や不完全な記述を確認
 - **💡 学びと気づき**: 追加すべき学習内容や気づき
 - **🚀 明日への申し送り**: 空欄や不十分な内容を確認
 
-### 3. 以下の分析と補完を実行
+### 4. 以下の分析と補完を実行
 
 #### A. 進捗状況の自動生成
 作業ログから以下を抽出して「📊 進捗状況」セクションに追記：
@@ -55,7 +110,7 @@ allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-a
 - 未達成の理由分析
 - 明日に繰り越すべき目標
 
-### 4. サマリーセクション
+### 5. サマリーセクション
 日報の最後に「## 📋 本日のサマリー」を置き、以下を記載：
 - **主要成果**: 今日達成した最も重要なこと（3つまで）
 - **学習効果**: 新しく得た知識やスキル
@@ -65,12 +120,12 @@ allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-a
 **既に存在する場合は、追加せず中身を書き直す。** ファイル内に
 「## 📋 本日のサマリー」は常に1つだけ存在する状態にする。
 
-### 5. 出力形式
+### 6. 出力形式
 - 空欄や「（〇〇時に記入）」となっている箇所を具体的な内容で置き換え
 - 新しく生成する内容は既存の書式に合わせる
 - 箇条書きは「•」を使用
 
-### 5-1. 1日に何度実行しても壊れないこと
+### 6-1. 1日に何度実行しても壊れないこと
 
 このスキルは 1 日に複数回実行される。午前に一度回してから、午後に
 最新化するために再実行する使い方を前提にする。
@@ -78,15 +133,15 @@ allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-a
 - **セクションは追加ではなく更新する。** 対象セクションが既にあれば、
   見出しを増やさず中身を書き直す。同じ見出しが2つ以上できてはいけない
 - **手で書かれた内容は消さない。** 作業ログのうち、自分で書いた記述や
-  `nippo` コマンド・`/nippo-sessions` が入れた時系列の記録はそのまま残す。
+  `nippo` コマンドが入れた時系列の記録はそのまま残す。
   書き換えてよいのは、このスキルが生成した分析セクション
   （進捗状況・学びと気づき・明日への申し送り・目標の達成度・サマリー）
-- **後から増えた作業を取り込む。** 2 回目以降は、前回の実行以降に増えた
-  作業ログとコミットを読み直し、分析セクション全体を現時点の内容で作り直す。
-  前回の記述をそのまま温存しない（古い達成度や「レビュー中」が残る）
+- **後から増えた作業を取り込む。** 2 回目以降も手順 2 をやり直し、前回の実行以降に
+  増えたコミット・PR・セッション履歴を読んだうえで、分析セクション全体を現時点の
+  内容で作り直す。前回の記述をそのまま温存しない（古い達成度や「レビュー中」が残る）
 - 実行後、同じ見出しが重複していないか確認する
 
-### 6. 記載してよい情報の範囲
+### 7. 記載してよい情報の範囲
 
 日報は個人アカウントのリポジトリに push される。会社の管理外に置かれる前提で、
 以下のルールで書く。判断に迷うものは書かない。
@@ -113,7 +168,7 @@ allowed-tools: Read, Edit, Write, Glob, Bash, mcp__linear__get_issue, mcp__mcp-a
 - 技術的な原因と対処。ライブラリ名・バージョン・設定値
 - 自分の学びと気づき
 
-### 7. 注意事項
+### 8. 注意事項
 - 作業ログの内容から客観的に分析すること
 - 過度に楽観的にならず、現実的な評価を行うこと
 - 明日のスケジュールや優先度を考慮した申し送りにすること

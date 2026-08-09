@@ -10,8 +10,10 @@ local function get_nippo_path()
 end
 
 -- 日報完成プロンプトを読み込み
+-- Claude Code の /nippo と同じ SKILL.md を読む。記載してよい情報の範囲などの
+-- ルールが片方だけ更新されて食い違うのを防ぐため、プロンプトの実体は1つにする
 local function get_finalize_prompt()
-  local prompt_file = vim.fn.expand("~/dotfiles/scripts/nippo-go/NIPPO_FINALIZE_AI.md")
+  local prompt_file = vim.fn.expand("~/dotfiles/.claude/skills/nippo/SKILL.md")
   local file = io.open(prompt_file, "r")
   if not file then
     vim.notify("プロンプトファイルが見つかりません: " .. prompt_file, vim.log.levels.ERROR)

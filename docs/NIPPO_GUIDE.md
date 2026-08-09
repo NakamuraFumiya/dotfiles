@@ -122,8 +122,9 @@ dotfiles/
 │       ├── main.go            # メインプログラム
 │       ├── sections.go        # セクション処理
 │       ├── nippo              # Goバイナリ（メイン）
-│       ├── go.mod             # Go modules
-│       └── NIPPO_FINALIZE_AI.md # AI完成プロンプト
+│       └── go.mod             # Go modules
+├── .claude/skills/nippo/
+│   └── SKILL.md               # AI完成プロンプト（nvim ルートもこれを読む）
 └── README.md                  # プロジェクト概要
 
 ~/nippo/                       # 日報ファイル保存場所（別リポジトリ）

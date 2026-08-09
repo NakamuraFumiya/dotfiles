@@ -9,7 +9,8 @@ description: Connect RPC をローカルで叩き、curl コマンドとレス�
 
 ローカルで Connect RPC エンドポイントを curl で叩き、結果（curl コマンド + レスポンス JSON）を現在ブランチに紐づく PR の body 末尾に追記するスキル。
 
-RPC を叩くだけで PR への記録が要らないなら `/local-rpc-test`（handy 系リポはトークンを自動発行してくれる）を使う。
+RPC を叩くだけで PR への記録が要らないなら `/local-rpc-test` を使う。
+そちらはリポジトリごとの接続設定を持ち、トークンも自動発行される。
 
 ## 前提
 

@@ -190,3 +190,8 @@ alias clog='echo "$(date "+%Y-%m-%d %H:%M") Claude使用" >> ~/claude_usage.log'
 # ==========================================
 alias h='herdr'
 
+# ==========================================
+# CodeRabbit エイリアス
+# ==========================================
+alias crr='coderabbit review'
+

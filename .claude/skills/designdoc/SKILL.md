@@ -74,6 +74,7 @@ Minispec の「引き継ぐもの」「実装上の前提」を、対象リポ�
   ## Data storage           — DDL は schema PR リンクに逃す。doc にはデプロイフロー（後方互換 → アプリ → backfill → NOT NULL 化 など）と不変条件の表だけ
   ## APIs                   — 「RPC 名（新規RPC / 既存RPC・レスポンス拡張）」+ sub bullet。RPC 名は仮と明記。authz の要否も書く
   ## Sequence-diagram       — RPC ごとに mermaid sequenceDiagram。トランザクション境界と外部 I/O の位置を図に出す
+                              メッセージ本文に `;` と `<...>` を書かない（`;` は文の区切りとして読まれて図が壊れ、山括弧は HTML タグとして削られる）。複数の処理は `<br/>` で改行し、プレースホルダは `{...}` にする
   ## Code and pseudo-code   — エンティティ設計・生成関数のシグネチャ・共通/固有の線引き基準・変更箇所の表
   ## Issue 構成（リリース順）— リポ単位の表。依存と「未起票」を明記
 # Alternatives considered   — 不採用案を「案 — 理由」の形で箇条書き

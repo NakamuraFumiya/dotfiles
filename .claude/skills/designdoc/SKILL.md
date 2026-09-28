@@ -71,12 +71,12 @@ Minispec の「引き継ぐもの」「実装上の前提」を、対象リポ�
   ## Non-goals — Minispec の Non-Goals + 実装上あえてやらないこと
 # The actual design
   ## System-context-diagram — mermaid flowchart。図の後に「変更 / 流用 / 変更なし」を箇条書き
-  ## Data storage           — DDL は schema PR リンクに逃す。doc にはデプロイフロー（後方互換 → アプリ → backfill → NOT NULL 化 など）と不変条件の表だけ
-  ## APIs                   — 「RPC 名（新規RPC / 既存RPC・レスポンス拡張）」+ sub bullet。RPC 名は仮と明記。authz の要否も書く
+  ## Data storage           — DDL は schema PR リンクに逃す（PR ができたら見出し直下に PR リンクを 1 行で貼る）。doc にはデプロイフロー（後方互換 → アプリ → backfill → NOT NULL 化 など）と不変条件の表だけ
+  ## APIs                   — 「RPC 名（新規RPC / 既存RPC・レスポンス拡張）」+ sub bullet。RPC 名は仮と明記（proto PR ができたら「仮」の記述を消して見出し直下に PR リンクを 1 行で貼る）。authz の要否も書く
   ## Sequence-diagram       — RPC ごとに mermaid sequenceDiagram。トランザクション境界と外部 I/O の位置を図に出す
                               メッセージ本文に `;` と `<...>` を書かない（`;` は文の区切りとして読まれて図が壊れ、山括弧は HTML タグとして削られる）。複数の処理は `<br/>` で改行し、プレースホルダは `{...}` にする
   ## Code and pseudo-code   — エンティティ設計・生成関数のシグネチャ・共通/固有の線引き基準・変更箇所の表
-  ## Issue 構成（リリース順）— リポ単位の表。依存と「未起票」を明記
+  ## Issue 構成（リリース順）— リポ単位の表。依存と「未起票」を明記。起票・PR 作成のたびに該当行へチケットと PR のリンクを追記し、冒頭の「未起票」の記述も更新する（本文側の対応箇所 — Data storage・APIs の見出し直下 — にも同じ PR リンクを貼る）
 # Alternatives considered   — 不採用案を「案 — 理由」の形で箇条書き
 ```
 
@@ -84,6 +84,8 @@ Minispec の「引き継ぐもの」「実装上の前提」を、対象リポ�
 - Minispec に書いてあること（引き継ぎ項目の一覧と根拠、PdM 論点）は繰り返さず、リンクで参照する
 
 ## 書き方の原則
+
+- GitHub PR の URL を素のまま（または通常の markdown リンクで）貼ると、Linear が保存時に PR チップ（Linear のレビューページ行き）へ自動変換して GitHub に飛べなくなる。GitHub に直接飛ばすには `[owner/repo#N](<https://github.com/owner/repo/pull/N/files>)` の形式で貼る（`/files` を付けると自動変換されない）
 
 - 判断には根拠を付ける。根拠は「既存コードのどこがそうなっているか」か「Minispec のどの決定か」のどちらか
 - 前例に倣うときは「倣う理由」ではなく「倣わない箇所とその理由」を書く（倣う箇所は前例のパスで足りる）

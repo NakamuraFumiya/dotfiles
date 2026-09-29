@@ -1,2 +1,7 @@
 .claude/skills/ship
 .claude/skills/query-handy-db
+
+# 進捗の実体。業務のチケット ID・PR 番号を含むので public なこのリポジトリへ入れない
+.claude/tasks/*
+!.claude/tasks/statusline.sh
+!.claude/tasks/README.md

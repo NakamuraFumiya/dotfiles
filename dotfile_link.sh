@@ -18,6 +18,11 @@ ln -snf ~/dotfiles/.claudeignore ~/.claudeignore
 ln -snf ~/dotfiles/.claude/skills ~/.claude/skills
 ln -snf ~/dotfiles/.claude/settings.json ~/.claude/settings.json
 ln -snf ~/dotfiles/.claude/CLAUDE.md ~/.claude/CLAUDE.md
+ln -snf ~/dotfiles/.config/ccstatusline ~/.config/ccstatusline
+# ~/.claude/tasks はディレクトリごと張らずスクリプトだけ張る。
+# 進捗の実体（current.txt 等）は業務のチケット ID を含むので、public なこのリポジトリへ入れない
+mkdir -p ~/.claude/tasks
+ln -snf ~/dotfiles/.claude/tasks/statusline.sh ~/.claude/tasks/statusline.sh
 
 
 # 以下は初回のセットアップ時のみ有効にする(基本的にはコメントアウト)

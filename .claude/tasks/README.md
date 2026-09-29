@@ -26,3 +26,10 @@ ccstatusline の 2 行目に現在地を出して、常に画面下部に残る�
 ```
 
 表示をやめたいときは `current.txt` を消す。widget ごと消える。
+
+## ccstatusline の設定を TUI で編集したとき
+
+`npx ccstatusline@latest` の設定画面で保存すると `settings.json` が書き換わる。
+書き換え方によっては symlink が実ファイルに置き換わり、このリポジトリと切れることがある。
+設定をいじったら `ls -l ~/.config/ccstatusline/settings.json` で symlink のままか見て、
+切れていたら中身をこのリポジトリへ戻してから `dotfile_link.sh` を流し直す。
